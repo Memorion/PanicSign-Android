@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/red_wrap"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/red"
+            android:tint="@color/red"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/orange_wrap"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/red_wrap"
+        android:layout_toEndOf="@id/red_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/orange"
+            android:tint="@color/orange"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/yellow_wrap"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/orange_wrap"
+        android:layout_toEndOf="@id/orange_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/yellow"
+            android:tint="@color/yellow"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/green_wrap"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/yellow_wrap"
+        android:layout_toEndOf="@id/yellow_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/green"
+            android:tint="@color/green"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/green2_wrap"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/green_wrap"
+        android:layout_toEndOf="@id/green_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/green2"
+            android:tint="@color/green2"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/teal_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/teal"
+            android:tint="@color/teal"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/light_blue_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/teal_wrap"
+        android:layout_toEndOf="@id/teal_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/light_blue"
+            android:tint="@color/lightblue"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/blue_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/light_blue_wrap"
+        android:layout_toEndOf="@id/light_blue_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/blue"
+            android:tint="@color/blue"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/purple_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/blue_wrap"
+        android:layout_toEndOf="@id/blue_wrap"
+        style="@style/ColorWrapper" >
+
+        <ImageView
+            android:id="@+id/purple"
+            android:tint="@color/purple"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+    <android.support.percent.PercentFrameLayout
+        android:id="@+id/pink_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/purple_wrap"
+        android:layout_toEndOf="@id/purple_wrap"
+        style="@style/ColorWrapper">
+
+        <ImageView
+            android:id="@+id/pink"
+            android:tint="@color/pink"
+            android:src="@drawable/color"
+            style="@style/ColorControl" />
+
+    </android.support.percent.PercentFrameLayout>
+
+</android.support.percent.PercentRelativeLayout>

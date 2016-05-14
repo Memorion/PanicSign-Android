@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Panic Sign</string>
+
+    <string name="action_change">Change the Sign!</string>
+</resources>
