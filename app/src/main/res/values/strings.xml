@@ -2,4 +2,16 @@
     <string name="app_name">Panic Sign</string>
 
     <string name="action_change">Change the Sign!</string>
+
+    <string name="red">RED</string>
+    <string name="orange">ORANGE</string>
+    <string name="yellow">YELLOW</string>
+    <string name="green">GREEN</string>
+    <string name="green2">GREEN2</string>
+    <string name="teal">TEAL</string>
+    <string name="light_blue">LIGHTBLUE</string>
+    <string name="blue">BLUE</string>
+    <string name="purple">PURPLE</string>
+    <string name="pink">PINK</string>
+    
 </resources>

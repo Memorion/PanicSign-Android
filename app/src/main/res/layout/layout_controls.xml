@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/red"
-            android:tint="@color/red"
-            android:src="@drawable/color"
+            android:src="@drawable/red"
+            android:tag="@string/red"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -28,8 +28,8 @@
 
         <ImageView
             android:id="@+id/orange"
-            android:tint="@color/orange"
-            android:src="@drawable/color"
+            android:src="@drawable/orange"
+            android:tag="@string/orange"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/yellow"
-            android:tint="@color/yellow"
-            android:src="@drawable/color"
+            android:src="@drawable/yellow"
+            android:tag="@string/yellow"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -58,8 +58,8 @@
 
         <ImageView
             android:id="@+id/green"
-            android:tint="@color/green"
-            android:src="@drawable/color"
+            android:src="@drawable/green"
+            android:tag="@string/green"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -73,8 +73,8 @@
 
         <ImageView
             android:id="@+id/green2"
-            android:tint="@color/green2"
-            android:src="@drawable/color"
+            android:src="@drawable/green2"
+            android:tag="@string/green2"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -88,8 +88,8 @@
 
         <ImageView
             android:id="@+id/teal"
-            android:tint="@color/teal"
-            android:src="@drawable/color"
+            android:src="@drawable/teal"
+            android:tag="@string/teal"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -103,8 +103,8 @@
 
         <ImageView
             android:id="@+id/light_blue"
-            android:tint="@color/lightblue"
-            android:src="@drawable/color"
+            android:src="@drawable/light_blue"
+            android:tag="@string/light_blue"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -118,8 +118,8 @@
 
         <ImageView
             android:id="@+id/blue"
-            android:tint="@color/blue"
-            android:src="@drawable/color"
+            android:src="@drawable/blue"
+            android:tag="@string/blue"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -133,8 +133,8 @@
 
         <ImageView
             android:id="@+id/purple"
-            android:tint="@color/purple"
-            android:src="@drawable/color"
+            android:src="@drawable/purple"
+            android:tag="@string/purple"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -148,8 +148,8 @@
 
         <ImageView
             android:id="@+id/pink"
-            android:tint="@color/pink"
-            android:src="@drawable/color"
+            android:src="@drawable/pink"
+            android:tag="@string/pink"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
