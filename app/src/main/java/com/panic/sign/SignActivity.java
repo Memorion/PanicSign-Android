@@ -15,7 +15,6 @@ import android.widget.ImageView;
 
 import java.util.List;
 
-import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
@@ -29,7 +28,6 @@ public class SignActivity extends AppCompatActivity {
     @BindView(R.id.view_sign) ImageView signView;
     @BindView(R.id.control_top) View topColors;
     @BindView(R.id.control_bottom) View bottomColors;
-    @BindDrawable(R.drawable.sign_all) Drawable rawSign;
     // this is necessary to disambiguate the layout IDs
     // may be fixed in the future https://github.com/JakeWharton/butterknife/issues/394
     static class ColorControl {
@@ -87,7 +85,7 @@ public class SignActivity extends AppCompatActivity {
         ButterKnife.bind(topControl, topColors);
         ButterKnife.bind(bottomControl, bottomColors);
 
-        sign = (LayerDrawable)rawSign;
+        sign = (LayerDrawable)signView.getDrawable();
         topSign = sign.findDrawableByLayerId(R.id.sign_top);
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom);
 

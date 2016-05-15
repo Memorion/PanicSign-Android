@@ -24,7 +24,7 @@
         android:layout_below="@id/control_top"
         android:layout_above="@+id/control_bottom"
         android:scaleType="fitCenter"
-        tools:src="@drawable/sign_all"/>
+        app:srcCompat="@drawable/sign_all"/>
 
     <include android:id="@+id/control_bottom"
         android:layout_above="@+id/button_change"
