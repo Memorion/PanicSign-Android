@@ -18,7 +18,8 @@
         app:layout_widthPercent="20%"
         layout="@layout/layout_controls" />
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/view_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -28,7 +29,7 @@
         android:layout_toEndOf="@id/control_top"
         android:layout_above="@id/button_change"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo_big"/>
+        tools:src="@drawable/sign_all"/>
 
     <include android:id="@+id/control_bottom"
         android:layout_above="@+id/button_change"
