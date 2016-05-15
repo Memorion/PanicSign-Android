@@ -92,8 +92,10 @@ public class SignActivity extends AppCompatActivity {
         signView.setImageDrawable(sign);
 
         if (savedInstanceState != null) {
-            topSelection = savedInstanceState.getString("TOP", "NONE");
-            bottomSelection = savedInstanceState.getString("BOTTOM", "NONE");
+            String topState = savedInstanceState.getString("TOP");
+            String bottomState = savedInstanceState.getString("BOTTOM");
+            topSelection = (topState != null) ? topState : "NONE";
+            bottomSelection = (bottomState != null) ? bottomState : "NONE";
         }
         topControl.setSelected(topSelection);
         changeSignColor(top, topSelection);
