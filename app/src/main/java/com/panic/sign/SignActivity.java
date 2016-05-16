@@ -35,30 +35,24 @@ public class SignActivity extends AppCompatActivity {
                 R.id.teal, R.id.light_blue, R.id.blue, R.id.purple, R.id.pink})
         List<ImageView> colors;
 
-        private void deselectViews() {
-            for (View v : colors) {
-                v.setSelected(false);
-            }
-        }
-
         public String getSelected() {
             for (View v : colors) {
                 if (v.isSelected()) {
                     return v.getTag().toString();
                 }
             }
-            return null;
+            throw new IllegalStateException("Some color has to be selected at all times");
         }
 
         public void setSelected(String selection) {
             if (selection == null) {
                 return;
             }
-            deselectViews();
             for (View v : colors) {
                 if (v.getTag().toString().equals(selection)) {
                     v.setSelected(true);
-                    break;
+                } else {
+                    v.setSelected(false);
                 }
             }
         }
@@ -92,10 +86,8 @@ public class SignActivity extends AppCompatActivity {
         signView.setImageDrawable(sign);
 
         if (savedInstanceState != null) {
-            String topState = savedInstanceState.getString("TOP");
-            String bottomState = savedInstanceState.getString("BOTTOM");
-            topSelection = (topState != null) ? topState : "NONE";
-            bottomSelection = (bottomState != null) ? bottomState : "NONE";
+            topSelection = savedInstanceState.getString("TOP");
+            bottomSelection = savedInstanceState.getString("BOTTOM");
         }
         topControl.setSelected(topSelection);
         changeSignColor(top, topSelection);
@@ -106,14 +98,10 @@ public class SignActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String current = view.getTag().toString();
-                if (topSelection.equals(current)) {
-                    view.setSelected(false);
-                    topSelection = "NONE";
-                } else {
-                    topControl.deselectViews();
-                    view.setSelected(true);
+                if (!topSelection.equals(current)) {
                     topSelection = current;
-                    changeSignColor(top, current);
+                    topControl.setSelected(topSelection);
+                    changeSignColor(top, topSelection);
                 }
                 Log.d("topSelection", topSelection);
             }
@@ -123,14 +111,10 @@ public class SignActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String current = view.getTag().toString();
-                if (bottomSelection.equals(current)) {
-                    view.setSelected(false);
-                    bottomSelection = "NONE";
-                } else {
-                    bottomControl.deselectViews();
-                    view.setSelected(true);
+                if (!bottomSelection.equals(current)) {
                     bottomSelection = current;
-                    changeSignColor(bottom, current);
+                    bottomControl.setSelected(bottomSelection);
+                    changeSignColor(bottom, bottomSelection);
                 }
                 Log.d("bottomSelection", bottomSelection);
             }
@@ -147,11 +131,10 @@ public class SignActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putString("TOP", topControl.getSelected());
         outState.putString("BOTTOM", bottomControl.getSelected());
+        super.onSaveInstanceState(outState);
     }
-
 
     private void changeSignColor(boolean top, String colorString) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
