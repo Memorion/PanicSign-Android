@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/red"
             android:src="@drawable/red"
-            android:tag="@string/red"
+            android:tag="@string/key_red"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -29,7 +29,7 @@
         <ImageView
             android:id="@+id/orange"
             android:src="@drawable/orange"
-            android:tag="@string/orange"
+            android:tag="@string/key_orange"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -44,7 +44,7 @@
         <ImageView
             android:id="@+id/yellow"
             android:src="@drawable/yellow"
-            android:tag="@string/yellow"
+            android:tag="@string/key_yellow"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -59,7 +59,7 @@
         <ImageView
             android:id="@+id/green"
             android:src="@drawable/green"
-            android:tag="@string/green"
+            android:tag="@string/key_green"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -74,7 +74,7 @@
         <ImageView
             android:id="@+id/green2"
             android:src="@drawable/green2"
-            android:tag="@string/green2"
+            android:tag="@string/key_green2"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -89,7 +89,7 @@
         <ImageView
             android:id="@+id/teal"
             android:src="@drawable/teal"
-            android:tag="@string/teal"
+            android:tag="@string/key_teal"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -104,7 +104,7 @@
         <ImageView
             android:id="@+id/light_blue"
             android:src="@drawable/light_blue"
-            android:tag="@string/light_blue"
+            android:tag="@string/key_light_blue"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -119,7 +119,7 @@
         <ImageView
             android:id="@+id/blue"
             android:src="@drawable/blue"
-            android:tag="@string/blue"
+            android:tag="@string/key_blue"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -134,7 +134,7 @@
         <ImageView
             android:id="@+id/purple"
             android:src="@drawable/purple"
-            android:tag="@string/purple"
+            android:tag="@string/key_purple"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>
@@ -149,7 +149,7 @@
         <ImageView
             android:id="@+id/pink"
             android:src="@drawable/pink"
-            android:tag="@string/pink"
+            android:tag="@string/key_pink"
             style="@style/ColorControl" />
 
     </android.support.percent.PercentFrameLayout>

@@ -3,15 +3,52 @@
 
     <string name="action_change">Change the Sign!</string>
 
-    <string name="red">RED</string>
-    <string name="orange">ORANGE</string>
-    <string name="yellow">YELLOW</string>
-    <string name="green">GREEN</string>
-    <string name="green2">GREEN2</string>
-    <string name="teal">TEAL</string>
-    <string name="light_blue">LIGHTBLUE</string>
-    <string name="blue">BLUE</string>
-    <string name="purple">PURPLE</string>
-    <string name="pink">PINK</string>
+    <string name="red">red</string>
+    <string name="orange">orange</string>
+    <string name="yellow">yellow</string>
+    <string name="green">green</string>
+    <string name="green2">dark green</string>
+    <string name="teal">teal</string>
+    <string name="light_blue">light blue</string>
+    <string name="blue">blue</string>
+    <string name="purple">purple</string>
+    <string name="pink">pink</string>
+
+    <string-array name="colors_spoken">
+        <item name="spoken_red">@string/red</item>
+        <item name="spoken_orange">@string/orange</item>
+        <item name="spoken_yellow">@string/yellow</item>
+        <item name="spoken_green">@string/green</item>
+        <item name="spoken_green2">@string/green2</item>
+        <item name="spoken_teal">@string/teal</item>
+        <item name="spoken_light_blue">@string/light_blue</item>
+        <item name="spoken_blue">@string/blue</item>
+        <item name="spoken_purple">@string/purple</item>
+        <item name="spoken_pink">@string/pink</item>
+    </string-array>
+
+    <string name="key_red" translatable="false">RED</string>
+    <string name="key_orange" translatable="false">ORANGE</string>
+    <string name="key_yellow" translatable="false">YELLOW</string>
+    <string name="key_green" translatable="false">GREEN</string>
+    <string name="key_green2" translatable="false">GREEN2</string>
+    <string name="key_teal" translatable="false">TEAL</string>
+    <string name="key_light_blue" translatable="false">LIGHTBLUE</string>
+    <string name="key_blue" translatable="false">BLUE</string>
+    <string name="key_purple" translatable="false">PURPLE</string>
+    <string name="key_pink" translatable="false">PINK</string>
+
+    <string-array name="colors_keys">
+        <item name="key_red">@string/key_red</item>
+        <item name="key_orange">@string/key_orange</item>
+        <item name="key_yellow">@string/key_yellow</item>
+        <item name="key_green">@string/key_green</item>
+        <item name="key_green2">@string/key_green2</item>
+        <item name="key_teal">@string/key_teal</item>
+        <item name="key_light_blue">@string/key_light_blue</item>
+        <item name="key_blue">@string/key_blue</item>
+        <item name="key_purple">@string/key_purple</item>
+        <item name="key_pink">@string/key_pink</item>
+    </string-array>
     
 </resources>
