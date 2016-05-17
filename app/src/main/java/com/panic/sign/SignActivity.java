@@ -1,5 +1,7 @@
 package com.panic.sign;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -7,9 +9,14 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.google.android.gms.actions.SearchIntents;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,8 +36,8 @@ public class SignActivity extends AppCompatActivity {
 
     boolean top = true;
     boolean bottom = false;
-    String topSelection = "LIGHTBLUE";
-    String bottomSelection = "BLUE";
+    String topSelection;
+    String bottomSelection;
 
     LayerDrawable sign;
     Drawable topSign;
@@ -44,6 +51,9 @@ public class SignActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             topSelection = savedInstanceState.getString("TOP");
             bottomSelection = savedInstanceState.getString("BOTTOM");
+        } else {
+            topSelection = getString(R.string.key_light_blue);
+            bottomSelection = getString(R.string.key_blue);
         }
 
         ButterKnife.bind(this);
@@ -55,6 +65,10 @@ public class SignActivity extends AppCompatActivity {
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom);
 
         signView.setImageDrawable(sign);
+
+        if (hasVoiceExtra()) {
+            handleVoiceInteraction();
+        }
 
         changeSignColor(top, topControl.getSelected());
         changeSignColor(bottom, bottomControl.getSelected());
@@ -80,18 +94,37 @@ public class SignActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
+    private boolean hasVoiceExtra() {
+        Intent intent = getIntent();
+        return SearchIntents.ACTION_SEARCH.equals(intent.getAction())
+                && intent.hasExtra(SearchManager.QUERY);
+    }
+
+    private void handleVoiceInteraction() {
+        String query = getIntent().getStringExtra(SearchManager.QUERY);
+        List<String> queryColors = ColorUtils.colorsFromQuery(ColorUtils.intlNameKeyMap, query);
+        if (queryColors.size() == 2) {
+            topControl.setSelected(queryColors.get(0));
+            bottomControl.setSelected(queryColors.get(1));
+        } else {
+            //TODO random
+        }
+        Log.d("VOICE", queryColors.toString());
+    }
+
     private void changeSignColor(boolean top, String colorString) {
+        int color = ColorUtils.resolveColor(this, ColorUtils.colorMap, colorString);
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
             if (top) {
-                topSign.setColorFilter(ColorUtils.resolveColor(this, colorString), PorterDuff.Mode.MULTIPLY);
+                topSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
             } else {
-                bottomSign.setColorFilter(ColorUtils.resolveColor(this, colorString), PorterDuff.Mode.MULTIPLY);
+                bottomSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
             }
         } else {
             if (top) {
-                topSign.setTint(ColorUtils.resolveColor(this, colorString));
+                topSign.setTint(color);
             } else {
-                bottomSign.setTint(ColorUtils.resolveColor(this, colorString));
+                bottomSign.setTint(color);
             }
         }
     }

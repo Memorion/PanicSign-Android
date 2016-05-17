@@ -22,7 +22,6 @@ public class ColorControl {
                 selection = current;
                 setSelected(selection);
             }
-            Log.d("bottomSelection", selection);
         }
     };
 

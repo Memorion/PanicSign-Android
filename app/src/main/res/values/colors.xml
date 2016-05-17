@@ -13,4 +13,16 @@
     <color name="purple">#8166c7</color>
     <color name="pink">#c268ba</color>
 
+    <array name="colors_ids">
+        <item name="id_red">@color/red</item>
+        <item name="id_orange">@color/orange</item>
+        <item name="id_yellow">@color/yellow</item>
+        <item name="id_green">@color/green</item>
+        <item name="id_green2">@color/green2</item>
+        <item name="id_teal">@color/teal</item>
+        <item name="id_lightblue">@color/lightblue</item>
+        <item name="id_blue">@color/blue</item>
+        <item name="id_purple">@color/purple</item>
+        <item name="id_pink">@color/pink</item>
+    </array>
 </resources>
