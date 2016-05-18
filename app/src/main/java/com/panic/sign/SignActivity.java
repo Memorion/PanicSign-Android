@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -102,14 +103,14 @@ public class SignActivity extends AppCompatActivity {
 
     private void handleVoiceInteraction() {
         String query = getIntent().getStringExtra(SearchManager.QUERY);
-        List<String> queryColors = ColorUtils.colorsFromQuery(ColorUtils.intlNameKeyMap, query);
-        if (queryColors.size() == 2) {
-            topControl.setSelected(queryColors.get(0));
-            bottomControl.setSelected(queryColors.get(1));
-        } else {
-            //TODO random
+        try {
+            Pair<String, String> colors = ColorUtils.colorsFromQuery(ColorUtils.intlNameKeyMap, query);
+            topControl.setSelected(colors.first);
+            bottomControl.setSelected(colors.second);
+            Log.d("VOICE", "Pair<" + colors.first + ", " + colors.second + ">");
+        } catch (IllegalArgumentException e) {
+            //TODO maybe random
         }
-        Log.d("VOICE", queryColors.toString());
     }
 
     private void changeSignColor(boolean top, String colorString) {
