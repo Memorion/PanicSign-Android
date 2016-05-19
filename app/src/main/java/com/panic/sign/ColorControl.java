@@ -10,7 +10,8 @@ import butterknife.ButterKnife;
 
 class ColorControl {
     @BindViews({R.id.red, R.id.orange, R.id.yellow, R.id.green, R.id.green2,
-            R.id.teal, R.id.light_blue, R.id.blue, R.id.purple, R.id.pink}) List<ImageView> colors;
+                R.id.teal, R.id.light_blue, R.id.blue, R.id.purple, R.id.pink})
+                List<ImageView> colors;
     private String selection;
     private OnColorSelectedListener listener;
 
@@ -47,7 +48,7 @@ class ColorControl {
 
     void setSelected(String selection) {
         if (selection == null) {
-            return;
+            throw new IllegalStateException("One color has to be selected at all times");
         }
         for (View v : colors) {
             String tag = (String)v.getTag();

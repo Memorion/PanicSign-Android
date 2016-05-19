@@ -48,8 +48,8 @@ public class SignActivity extends AppCompatActivity {
         String bottomSelection;
 
         if (savedInstanceState != null) {
-            topSelection = savedInstanceState.getString("TOP");
-            bottomSelection = savedInstanceState.getString("BOTTOM");
+            topSelection = savedInstanceState.getString(getString(R.string.key_top));
+            bottomSelection = savedInstanceState.getString(getString(R.string.key_bottom));
         } else {
             topSelection = getString(R.string.key_light_blue);
             bottomSelection = getString(R.string.key_blue);
@@ -88,8 +88,8 @@ public class SignActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString("TOP", topControl.getSelected());
-        outState.putString("BOTTOM", bottomControl.getSelected());
+        outState.putString(getString(R.string.key_top), topControl.getSelected());
+        outState.putString(getString(R.string.key_bottom), bottomControl.getSelected());
         super.onSaveInstanceState(outState);
     }
 
