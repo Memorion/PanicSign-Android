@@ -12,7 +12,7 @@ public class PanicSign extends Application {
         context = this.getApplicationContext();
     }
 
-    public static Context getAppContext() {
+    static Context getAppContext() {
         return context;
     }
 }

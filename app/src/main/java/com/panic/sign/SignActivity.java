@@ -17,8 +17,6 @@ import android.widget.ImageView;
 
 import com.google.android.gms.actions.SearchIntents;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -29,25 +27,25 @@ public class SignActivity extends AppCompatActivity {
     }
     @BindView(R.id.button_change) Button change;
     @BindView(R.id.view_sign) ImageView signView;
-    @BindView(R.id.control_top) View topColors;
-    @BindView(R.id.control_bottom) View bottomColors;
+    @BindView(R.id.control_top) View topColorView;
+    @BindView(R.id.control_bottom) View bottomColorView;
 
-    ColorControl topControl;
-    ColorControl bottomControl;
+    private ColorControl topControl;
+    private ColorControl bottomControl;
 
-    boolean top = true;
-    boolean bottom = false;
-    String topSelection;
-    String bottomSelection;
+    private final boolean top = true;
+    private final boolean bottom = false;
 
-    LayerDrawable sign;
-    Drawable topSign;
-    Drawable bottomSign;
+    private Drawable topSign;
+    private Drawable bottomSign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+
+        String topSelection;
+        String bottomSelection;
 
         if (savedInstanceState != null) {
             topSelection = savedInstanceState.getString("TOP");
@@ -58,10 +56,10 @@ public class SignActivity extends AppCompatActivity {
         }
 
         ButterKnife.bind(this);
-        topControl = new ColorControl(topColors, topSelection);
-        bottomControl = new ColorControl(bottomColors, bottomSelection);
+        topControl = new ColorControl(topColorView, topSelection);
+        bottomControl = new ColorControl(bottomColorView, bottomSelection);
 
-        sign = (LayerDrawable)signView.getDrawable();
+        LayerDrawable sign = (LayerDrawable)signView.getDrawable();
         topSign = sign.findDrawableByLayerId(R.id.sign_top);
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom);
 

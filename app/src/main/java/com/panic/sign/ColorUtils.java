@@ -14,12 +14,12 @@ import java.util.List;
 
 import static com.panic.sign.PanicSign.getAppContext;
 
-public class ColorUtils {
+class ColorUtils {
 
-    static String[] colorKeys = getAppContext().getResources()
+    private static String[] colorKeys = getAppContext().getResources()
             .getStringArray(R.array.colors_keys);
 
-    public static HashMap<String, String> intlNameKeyMap;
+    static HashMap<String, String> intlNameKeyMap;
     static {
         String[] intlColors = getAppContext().getResources().getStringArray(R.array.colors_spoken);
         if (intlColors.length != colorKeys.length) {
@@ -31,7 +31,7 @@ public class ColorUtils {
         }
     }
 
-    public static HashMap<String, Integer> colorMap;
+    static HashMap<String, Integer> colorMap;
     static {
         TypedArray typedArray = getAppContext().getResources().obtainTypedArray(R.array.colors_ids);
         colorMap = new HashMap<>(typedArray.length());
@@ -41,14 +41,14 @@ public class ColorUtils {
         typedArray.recycle();
     }
 
-    public static int resolveColor(Context context, HashMap<String, Integer> colorIDMap, String color) {
+    static int resolveColor(Context context, HashMap<String, Integer> colorIDMap, String color) {
         Integer id = colorIDMap.get(color);
         if (id != null) { return ContextCompat.getColor(context, id); }
         Log.e("ColorUtils", "Searched colorMap for invalid String: " + color);
         return ContextCompat.getColor(context, R.color.purple);
     }
 
-    public static Pair<String, String> colorsFromQuery(HashMap<String, String> intlNameKeyMap, String query) {
+    static Pair<String, String> colorsFromQuery(HashMap<String, String> intlNameKeyMap, String query) {
         Log.d("QUERY", query);
 
         List<String> possibleColors = new ArrayList<>(intlNameKeyMap.keySet().size());

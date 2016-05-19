@@ -1,6 +1,5 @@
 package com.panic.sign;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -9,33 +8,35 @@ import java.util.List;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 
-public class ColorControl {
+class ColorControl {
     @BindViews({R.id.red, R.id.orange, R.id.yellow, R.id.green, R.id.green2,
             R.id.teal, R.id.light_blue, R.id.blue, R.id.purple, R.id.pink}) List<ImageView> colors;
-    String selection;
-    OnColorSelectedListener listener;
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            String current = (String)view.getTag();
-            if (!selection.equals(current)) {
-                selection = current;
-                setSelected(selection);
-            }
-        }
-    };
+    private String selection;
+    private OnColorSelectedListener listener;
 
-    public ColorControl(View view, String initSelection) {
+    ColorControl(View view, String initSelection) {
         ButterKnife.bind(this, view);
 
         selection = initSelection;
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String current = (String)view.getTag();
+                if (!selection.equals(current)) {
+                    selection = current;
+                    setSelected(selection);
+                }
+            }
+        };
+
         for (ImageView v : colors) {
             v.setOnClickListener(onClickListener);
         }
         setSelected(selection);
     }
 
-    public String getSelected() {
+    String getSelected() {
         for (View v : colors) {
             if (v.isSelected()) {
                 return (String)v.getTag();
@@ -44,7 +45,7 @@ public class ColorControl {
         throw new IllegalStateException("One color has to be selected at all times");
     }
 
-    public void setSelected(String selection) {
+    void setSelected(String selection) {
         if (selection == null) {
             return;
         }
@@ -61,7 +62,7 @@ public class ColorControl {
         }
     }
 
-    public void setOnColorSelectedListener(OnColorSelectedListener listener) {
+    void setOnColorSelectedListener(OnColorSelectedListener listener) {
         this.listener = listener;
     }
 
