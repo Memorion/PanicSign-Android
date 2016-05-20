@@ -3,8 +3,8 @@
 
     <string name="action_change">Change the Sign!</string>
 
-    <string name="key_top">TOP</string>
-    <string name="key_bottom">BOTTOM</string>
+    <string name="key_top" translatable="false">TOP</string>
+    <string name="key_bottom" translatable="false">BOTTOM</string>
 
     <string name="red">red</string>
     <string name="orange">orange</string>

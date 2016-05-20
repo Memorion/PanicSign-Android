@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 public class SignActivity extends AppCompatActivity {
     static {
         // https://medium.com/@chrisbanes/appcompat-v23-2-age-of-the-vectors-91cbafa87c88
+        // needed for LayerDrawables with <vector> inside < on api 21
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
     @BindView(R.id.button_change) Button change;
