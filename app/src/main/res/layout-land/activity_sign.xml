@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.panic.sign.SignActivity">
+    tools:context="de.bastianrinsche.panicsign.SignActivity">
 
     <include android:id="@+id/control_top"
         android:layout_above="@+id/button_change"

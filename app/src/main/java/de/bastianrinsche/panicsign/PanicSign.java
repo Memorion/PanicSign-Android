@@ -1,4 +1,4 @@
-package com.panic.sign;
+package de.bastianrinsche.panicsign;
 
 import android.app.Application;
 import android.content.Context;

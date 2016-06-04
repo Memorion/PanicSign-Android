@@ -1,4 +1,4 @@
-package com.panic.sign;
+package de.bastianrinsche.panicsign;
 
 import android.app.SearchManager;
 import android.content.Intent;

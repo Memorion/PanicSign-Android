@@ -1,4 +1,4 @@
-package com.panic.sign;
+package de.bastianrinsche.panicsign;
 
 import org.junit.Test;
 

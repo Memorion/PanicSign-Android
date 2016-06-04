@@ -1,4 +1,4 @@
-package com.panic.sign;
+package de.bastianrinsche.panicsign;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.panic.sign.PanicSign.getAppContext;
+import static de.bastianrinsche.panicsign.PanicSign.getAppContext;
 
 class ColorUtils {
 
