@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "com.panic.sign"
+        applicationId "de.bastianrinsche.panicsign"
         minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
