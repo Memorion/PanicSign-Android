@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
@@ -19,6 +20,10 @@ import com.google.android.gms.actions.SearchIntents;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignActivity extends AppCompatActivity {
     static {
@@ -30,6 +35,8 @@ public class SignActivity extends AppCompatActivity {
     @BindView(R.id.view_sign) ImageView signView;
     @BindView(R.id.control_top) View topColorView;
     @BindView(R.id.control_bottom) View bottomColorView;
+
+    private View.OnClickListener sendChangeListener;
 
     private ColorControl topControl;
     private ColorControl bottomControl;
@@ -68,6 +75,7 @@ public class SignActivity extends AppCompatActivity {
 
         if (hasVoiceExtra()) {
             handleVoiceInteraction();
+            sendChangeRequest();
         }
 
         changeSignColor(top, topControl.getSelected());
@@ -127,6 +135,32 @@ public class SignActivity extends AppCompatActivity {
                 bottomSign.setTint(color);
             }
         }
+    }
+
+    @OnClick(R.id.button_change)
+    void sendChangeRequest() {
+        String topRGB = ColorUtils.colorToRGBString(topControl.getSelected());
+        String bottomRGB = ColorUtils.colorToRGBString(bottomControl.getSelected());
+
+        Call<String> request = PanicSign.getSignService().setSignColors(topRGB, bottomRGB);
+        request.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (!response.isSuccessful()) {
+                    showErrorSnackbar();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                showErrorSnackbar();
+            }
+        });
+    }
+
+    private void showErrorSnackbar() {
+        Snackbar snackbar = Snackbar.make(bottomColorView, R.string.feedback_generic_error, Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
 
 }

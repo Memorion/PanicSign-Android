@@ -41,11 +41,27 @@ class ColorUtils {
         typedArray.recycle();
     }
 
+    private static HashMap<String, String> colorRGBMap;
+    static {
+        String[] rgbStrings = getAppContext().getResources().getStringArray(R.array.colors_keys_rgb);
+        if (rgbStrings.length != colorKeys.length) {
+            throw new IllegalStateException("The amount of rgb Strings and color keys don't match");
+        }
+        colorRGBMap = new HashMap<>(rgbStrings.length);
+        for (int i = 0; i < rgbStrings.length; i++) {
+            colorRGBMap.put(colorKeys[i], rgbStrings[i]);
+        }
+    }
+
     static int resolveColor(Context context, HashMap<String, Integer> colorIDMap, String color) {
         Integer id = colorIDMap.get(color);
         if (id != null) { return ContextCompat.getColor(context, id); }
         Log.e("ColorUtils", "Searched colorMap for invalid String: " + color);
         return ContextCompat.getColor(context, R.color.purple);
+    }
+
+    static String colorToRGBString(String color) {
+        return colorRGBMap.get(color);
     }
 
     static Pair<String, String> colorsFromQuery(HashMap<String, String> intlNameKeyMap, String query) {
