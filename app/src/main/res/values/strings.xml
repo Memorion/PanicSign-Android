@@ -2,6 +2,7 @@
     <string name="app_name">Panic Sign</string>
 
     <string name="action_change">Change the Sign!</string>
+    <string name="feedback_generic_error">Oops! Something went wrong!</string>
 
     <string name="key_top" translatable="false">TOP</string>
     <string name="key_bottom" translatable="false">BOTTOM</string>
@@ -52,6 +53,30 @@
         <item name="key_blue">@string/key_blue</item>
         <item name="key_purple">@string/key_purple</item>
         <item name="key_pink">@string/key_pink</item>
+    </string-array>
+
+    <string name="key_red_rgb" translatable="false">255/0/20</string>
+    <string name="key_orange_rgb" translatable="false">255/100/0</string>
+    <string name="key_yellow_rgb" translatable="false">255/220/0</string>
+    <string name="key_green_rgb" translatable="false">90/255/0</string>
+    <string name="key_green2_rgb" translatable="false">20/255/0</string>
+    <string name="key_teal_rgb" translatable="false">64/255/64</string>
+    <string name="key_light_blue_rgb" translatable="false">54/255/125</string>
+    <string name="key_blue_rgb" translatable="false">0/191/255</string>
+    <string name="key_purple_rgb" translatable="false">71/0/255</string>
+    <string name="key_pink_rgb" translatable="false">255/90/128</string>
+
+    <string-array name="colors_keys_rgb">
+        <item name="key_red_rgb">@string/key_red_rgb</item>
+        <item name="key_orange_rgb">@string/key_orange_rgb</item>
+        <item name="key_yellow_rgb">@string/key_yellow_rgb</item>
+        <item name="key_green_rgb">@string/key_green_rgb</item>
+        <item name="key_green2_rgb">@string/key_green2_rgb</item>
+        <item name="key_teal_rgb">@string/key_teal_rgb</item>
+        <item name="key_light_blue_rgb">@string/key_light_blue_rgb</item>
+        <item name="key_blue_rgb">@string/key_blue_rgb</item>
+        <item name="key_purple_rgb">@string/key_purple_rgb</item>
+        <item name="key_pink_rgb">@string/key_pink_rgb</item>
     </string-array>
     
 </resources>
