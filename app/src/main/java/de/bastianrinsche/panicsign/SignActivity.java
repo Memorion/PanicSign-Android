@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,8 +36,6 @@ public class SignActivity extends AppCompatActivity {
     @BindView(R.id.view_sign) ImageView signView;
     @BindView(R.id.control_top) View topColorView;
     @BindView(R.id.control_bottom) View bottomColorView;
-
-    private View.OnClickListener sendChangeListener;
 
     private ColorControl topControl;
     private ColorControl bottomControl;
@@ -72,10 +71,14 @@ public class SignActivity extends AppCompatActivity {
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom);
 
         signView.setImageDrawable(sign);
+        // disable all caps button for api < 14
+        change.setTransformationMethod(null);
 
         if (hasVoiceExtra()) {
             handleVoiceInteraction();
-            sendChangeRequest();
+            if (sendAfterVoiceEnabled()) {
+                sendChangeRequest();
+            }
         }
 
         changeSignColor(top, topControl.getSelected());
@@ -137,6 +140,12 @@ public class SignActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.button_overflow)
+    void openAbout() {
+        Intent about = new Intent(this, AboutActivity.class);
+        startActivity(about);
+    }
+
     @OnClick(R.id.button_change)
     void sendChangeRequest() {
         String topRGB = ColorUtils.colorToRGBString(topControl.getSelected());
@@ -156,6 +165,11 @@ public class SignActivity extends AppCompatActivity {
                 showErrorSnackbar();
             }
         });
+    }
+
+    private boolean sendAfterVoiceEnabled() {
+        return PreferenceManager.getDefaultSharedPreferences(this)
+                .getBoolean(getString(R.string.key_pref_send_after_voice), true);
     }
 
     private void showErrorSnackbar() {
