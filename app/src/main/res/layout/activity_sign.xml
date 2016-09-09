@@ -62,7 +62,7 @@
         android:background="@android:color/transparent"
         app:layout_heightPercent="10%"
         app:layout_widthPercent="10%"
-        android:src="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
+        app:srcCompat="@drawable/material_overflow"
         android:layout_below="@+id/control_bottom" />
 
 </android.support.percent.PercentRelativeLayout>
