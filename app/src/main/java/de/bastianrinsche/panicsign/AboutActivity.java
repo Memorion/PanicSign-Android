@@ -7,16 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
-import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.dismiss) ImageButton dismissButton;
     @BindView(R.id.pref_voice_switch) SwitchCompat voiceSwitch;
     @BindView(R.id.about_text) TextView aboutText;
 
@@ -29,9 +31,6 @@ public class AboutActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         aboutText.setMovementMethod(LinkMovementMethod.getInstance());
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.close);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -47,12 +46,8 @@ public class AboutActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    @OnClick(R.id.dismiss)
+    void dismiss() {
+        onBackPressed();
     }
 }

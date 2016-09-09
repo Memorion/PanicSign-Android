@@ -2,8 +2,11 @@
     <string name="app_name">Panic Sign</string>
 
     <string name="action_change">Change the Sign!</string>
+    <string name="action_dismiss">Dismiss</string>
     <string name="feedback_generic_error">Oops, something went wrong!</string>
-    <string name="settings_send_after_voice">Voice control</string>
+    <string name="settings">Settings</string>
+    <string name="settings_features">Features</string>
+    <string name="settings_send_after_voice">Auto submit</string>
     <string name="settings_sum_send_after_voice">Submit colors to the real sign automatically when using voice control</string>
     <string name="about_title">About</string>
     <string name="about_disclaimer">This app is <b>not</b> produced or endorsed by <a href="https://panic.com">Panic Inc.</a>
