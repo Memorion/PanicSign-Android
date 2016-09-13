@@ -18,7 +18,7 @@
         \n\nThe code is open source and can be found on <a href="https://github.com/Memorion/PanicSign">Github</a>.
     </string>
 
-    <string name="key_pref_send_after_voice" translatable="false">PREF_SEND_AFTER_VOICE</string>
+    <string name="key_pref_auto_send" translatable="false">PREF_AUTO_SEND</string>
     <string name="key_top" translatable="false">TOP</string>
     <string name="key_bottom" translatable="false">BOTTOM</string>
 

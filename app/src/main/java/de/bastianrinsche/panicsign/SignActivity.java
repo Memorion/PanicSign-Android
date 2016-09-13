@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -16,8 +17,10 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.actions.SearchIntents;
+import com.squareup.seismic.ShakeDetector;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SignActivity extends AppCompatActivity {
+public class SignActivity extends AppCompatActivity implements ShakeDetector.Listener {
     static {
         // https://medium.com/@chrisbanes/appcompat-v23-2-age-of-the-vectors-91cbafa87c88
         // needed for LayerDrawables with <vector> inside < on api 21
@@ -45,6 +48,9 @@ public class SignActivity extends AppCompatActivity {
 
     private Drawable topSign;
     private Drawable bottomSign;
+
+    SensorManager sensorManager;
+    ShakeDetector shakeDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +82,13 @@ public class SignActivity extends AppCompatActivity {
 
         if (hasVoiceExtra()) {
             handleVoiceInteraction();
-            if (sendAfterVoiceEnabled()) {
+            if (autoSendEnabled()) {
                 sendChangeRequest();
             }
         }
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        shakeDetector = new ShakeDetector(this);
 
         changeSignColor(top, topControl.getSelected());
         changeSignColor(bottom, bottomControl.getSelected());
@@ -96,6 +105,18 @@ public class SignActivity extends AppCompatActivity {
                 changeSignColor(bottom, color);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        shakeDetector.start(sensorManager);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        shakeDetector.stop();
     }
 
     @Override
@@ -140,6 +161,17 @@ public class SignActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void hearShake() {
+        Pair<String, String> colors = ColorUtils.getRandomColors();
+        topControl.setSelected(colors.first);
+        bottomControl.setSelected(colors.second);
+
+        if (autoSendEnabled()) {
+            sendChangeRequest();
+        }
+    }
+
     @OnClick(R.id.button_overflow)
     void openAbout() {
         Intent about = new Intent(this, AboutActivity.class);
@@ -167,9 +199,9 @@ public class SignActivity extends AppCompatActivity {
         });
     }
 
-    private boolean sendAfterVoiceEnabled() {
+    private boolean autoSendEnabled() {
         return PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean(getString(R.string.key_pref_send_after_voice), true);
+                .getBoolean(getString(R.string.key_pref_auto_send), true);
     }
 
     private void showErrorSnackbar() {

@@ -34,7 +34,7 @@ public class AboutActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        final String pref_key = getString(R.string.key_pref_send_after_voice);
+        final String pref_key = getString(R.string.key_pref_auto_send);
         boolean sendAfterVoice = preferences.getBoolean(pref_key, true);
 
         voiceSwitch.setChecked(sendAfterVoice);

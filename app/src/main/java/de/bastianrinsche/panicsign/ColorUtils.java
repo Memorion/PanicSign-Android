@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import static de.bastianrinsche.panicsign.PanicSign.getAppContext;
 
@@ -101,6 +102,15 @@ class ColorUtils {
             default:
                 return new Pair<>(foundColors.get(0), foundColors.get(1));
         }
+    }
+
+    static Pair<String, String> getRandomColors() {
+        Random rand = new Random();
+
+        int topRandom = rand.nextInt(intlNameKeyMap.size());
+        int botRandom = rand.nextInt(intlNameKeyMap.size());
+
+        return new Pair<>(colorKeys[topRandom], colorKeys[botRandom]);
     }
 
 }
