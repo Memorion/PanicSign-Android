@@ -29,7 +29,7 @@ public class PanicSign extends Application {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://signserver.panic.com:54444/")
+                .baseUrl("https://signserver.panic.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 

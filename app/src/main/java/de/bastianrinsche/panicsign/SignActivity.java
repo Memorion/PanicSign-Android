@@ -188,13 +188,17 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (!response.isSuccessful()) {
-                    showErrorSnackbar();
+                    if (response.code() == 429) {
+                        showErrorSnackbar(R.string.error_rate_limited);
+                    } else {
+                        showErrorSnackbar(R.string.error_generic);
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                showErrorSnackbar();
+                showErrorSnackbar(R.string.error_generic);
             }
         });
     }
@@ -204,8 +208,8 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
                 .getBoolean(getString(R.string.key_pref_auto_send), true);
     }
 
-    private void showErrorSnackbar() {
-        Snackbar snackbar = Snackbar.make(bottomColorView, R.string.feedback_generic_error, Snackbar.LENGTH_LONG);
+    private void showErrorSnackbar(int messageId) {
+        Snackbar snackbar = Snackbar.make(bottomColorView, messageId, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 

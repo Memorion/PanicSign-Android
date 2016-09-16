@@ -3,7 +3,8 @@
 
     <string name="action_change">Change the Sign!</string>
     <string name="action_dismiss">Dismiss</string>
-    <string name="feedback_generic_error">Oops, something went wrong!</string>
+    <string name="error_generic">Oops, something went wrong!</string>
+    <string name="error_rate_limited">Too many requests!</string>
     <string name="settings">Settings</string>
     <string name="settings_features">Features</string>
     <string name="settings_send_after_voice">Auto submit</string>
@@ -70,16 +71,16 @@
         <item name="key_pink">@string/key_pink</item>
     </string-array>
 
-    <string name="key_red_rgb" translatable="false">255/0/20</string>
-    <string name="key_orange_rgb" translatable="false">255/100/0</string>
-    <string name="key_yellow_rgb" translatable="false">255/220/0</string>
-    <string name="key_green_rgb" translatable="false">90/255/0</string>
-    <string name="key_green2_rgb" translatable="false">20/255/0</string>
-    <string name="key_teal_rgb" translatable="false">64/255/64</string>
-    <string name="key_light_blue_rgb" translatable="false">54/255/125</string>
-    <string name="key_blue_rgb" translatable="false">0/191/255</string>
-    <string name="key_purple_rgb" translatable="false">71/0/255</string>
-    <string name="key_pink_rgb" translatable="false">255/90/128</string>
+    <string name="key_red_rgb" translatable="false">red</string>
+    <string name="key_orange_rgb" translatable="false">orange</string>
+    <string name="key_yellow_rgb" translatable="false">yellow</string>
+    <string name="key_green_rgb" translatable="false">green</string>
+    <string name="key_green2_rgb" translatable="false">green2</string>
+    <string name="key_teal_rgb" translatable="false">teal</string>
+    <string name="key_light_blue_rgb" translatable="false">lightblue</string>
+    <string name="key_blue_rgb" translatable="false">blue</string>
+    <string name="key_purple_rgb" translatable="false">purple</string>
+    <string name="key_pink_rgb" translatable="false">pink</string>
 
     <string-array name="colors_keys_rgb">
         <item name="key_red_rgb">@string/key_red_rgb</item>
