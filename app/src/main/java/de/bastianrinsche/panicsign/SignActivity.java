@@ -17,7 +17,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.actions.SearchIntents;
 import com.squareup.seismic.ShakeDetector;
@@ -49,8 +48,8 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
     private Drawable topSign;
     private Drawable bottomSign;
 
-    SensorManager sensorManager;
-    ShakeDetector shakeDetector;
+    private SensorManager sensorManager;
+    private ShakeDetector shakeDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
