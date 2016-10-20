@@ -35,9 +35,9 @@ public class AboutActivity extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         final String pref_key = getString(R.string.key_pref_auto_send);
-        boolean sendAfterVoice = preferences.getBoolean(pref_key, true);
+        boolean autoSend = preferences.getBoolean(pref_key, false);
 
-        voiceSwitch.setChecked(sendAfterVoice);
+        voiceSwitch.setChecked(autoSend);
         voiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
