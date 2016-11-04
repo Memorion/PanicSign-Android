@@ -1,6 +1,7 @@
 package de.bastianrinsche.panicsign;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -13,16 +14,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import static de.bastianrinsche.panicsign.PanicSign.getAppContext;
-
 class ColorUtils {
 
-    private static String[] colorKeys = getAppContext().getResources()
-            .getStringArray(R.array.colors_keys);
+    private final String[] colorKeys;
+    private HashMap<String, String> colorRGBMap;
+    HashMap<String, String> intlNameKeyMap;
+    HashMap<String, Integer> colorMap;
 
-    static HashMap<String, String> intlNameKeyMap;
-    static {
-        String[] intlColors = getAppContext().getResources().getStringArray(R.array.colors_spoken);
+    ColorUtils(Context context) {
+
+        Resources resources = context.getResources();
+
+        colorKeys = resources.getStringArray(R.array.colors_keys);
+
+        String[] intlColors = resources.getStringArray(R.array.colors_spoken);
         if (intlColors.length != colorKeys.length) {
             throw new IllegalStateException("The amount of spoken colors and color keys don't match");
         }
@@ -30,21 +35,15 @@ class ColorUtils {
         for (int i = 0; i < intlColors.length; i++) {
             intlNameKeyMap.put(intlColors[i], colorKeys[i]);
         }
-    }
 
-    static HashMap<String, Integer> colorMap;
-    static {
-        TypedArray typedArray = getAppContext().getResources().obtainTypedArray(R.array.colors_ids);
+        TypedArray typedArray = resources.obtainTypedArray(R.array.colors_ids);
         colorMap = new HashMap<>(typedArray.length());
         for (int i = 0; i < colorKeys.length; i++) {
             colorMap.put(colorKeys[i], typedArray.getResourceId(i, R.color.purple));
         }
         typedArray.recycle();
-    }
 
-    private static HashMap<String, String> colorRGBMap;
-    static {
-        String[] rgbStrings = getAppContext().getResources().getStringArray(R.array.colors_keys_rgb);
+        String[] rgbStrings = resources.getStringArray(R.array.colors_keys_rgb);
         if (rgbStrings.length != colorKeys.length) {
             throw new IllegalStateException("The amount of rgb Strings and color keys don't match");
         }
@@ -61,11 +60,11 @@ class ColorUtils {
         return ContextCompat.getColor(context, R.color.purple);
     }
 
-    static String colorToRGBString(String color) {
+    String colorToRGBString(String color) {
         return colorRGBMap.get(color);
     }
 
-    static Pair<String, String> colorsFromQuery(HashMap<String, String> intlNameKeyMap, String query) {
+    Pair<String, String> colorsFromQuery(HashMap<String, String> intlNameKeyMap, String query) {
         Log.d("QUERY", query);
 
         List<String> possibleColors = new ArrayList<>(intlNameKeyMap.keySet().size());
@@ -104,7 +103,7 @@ class ColorUtils {
         }
     }
 
-    static Pair<String, String> getRandomColors() {
+    Pair<String, String> getRandomColors() {
         Random rand = new Random();
 
         int topRandom = rand.nextInt(intlNameKeyMap.size());

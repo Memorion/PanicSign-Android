@@ -1,7 +1,6 @@
 package de.bastianrinsche.panicsign;
 
 import android.app.Application;
-import android.content.Context;
 
 import com.squareup.leakcanary.LeakCanary;
 
@@ -11,13 +10,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class PanicSign extends Application {
-    private static Context context;
+    private static ColorUtils colorUtils;
     private static SignService signService;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this.getApplicationContext();
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
@@ -39,11 +37,13 @@ public class PanicSign extends Application {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
+        colorUtils = new ColorUtils(getApplicationContext());
+
         signService = retrofit.create(SignService.class);
     }
 
-    static Context getAppContext() {
-        return context;
+    static ColorUtils getColorUtils() {
+        return colorUtils;
     }
 
     static SignService getSignService() {

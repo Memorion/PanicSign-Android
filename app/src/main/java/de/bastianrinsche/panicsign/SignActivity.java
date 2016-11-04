@@ -48,6 +48,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
     private Drawable topSign;
     private Drawable bottomSign;
 
+    private ColorUtils colorUtils;
     private SensorManager sensorManager;
     private ShakeDetector shakeDetector;
 
@@ -88,6 +89,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         shakeDetector = new ShakeDetector(this);
+        colorUtils = PanicSign.getColorUtils();
 
         changeSignColor(top, topControl.getSelected());
         changeSignColor(bottom, bottomControl.getSelected());
@@ -134,7 +136,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
     private void handleVoiceInteraction() {
         String query = getIntent().getStringExtra(SearchManager.QUERY);
         try {
-            Pair<String, String> colors = ColorUtils.colorsFromQuery(ColorUtils.intlNameKeyMap, query);
+            Pair<String, String> colors = colorUtils.colorsFromQuery(colorUtils.intlNameKeyMap, query);
             topControl.setSelected(colors.first);
             bottomControl.setSelected(colors.second);
             Log.d("VOICE", "Pair<" + colors.first + ", " + colors.second + ">");
@@ -144,7 +146,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
     }
 
     private void changeSignColor(boolean top, String colorString) {
-        int color = ColorUtils.resolveColor(this, ColorUtils.colorMap, colorString);
+        int color = ColorUtils.resolveColor(this, colorUtils.colorMap, colorString);
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
             if (top) {
                 topSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
@@ -162,7 +164,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     @Override
     public void hearShake() {
-        Pair<String, String> colors = ColorUtils.getRandomColors();
+        Pair<String, String> colors = colorUtils.getRandomColors();
         topControl.setSelected(colors.first);
         bottomControl.setSelected(colors.second);
 
@@ -179,8 +181,8 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     @OnClick(R.id.button_change)
     void sendChangeRequest() {
-        String topRGB = ColorUtils.colorToRGBString(topControl.getSelected());
-        String bottomRGB = ColorUtils.colorToRGBString(bottomControl.getSelected());
+        String topRGB = colorUtils.colorToRGBString(topControl.getSelected());
+        String bottomRGB = colorUtils.colorToRGBString(bottomControl.getSelected());
 
         Call<String> request = PanicSign.getSignService().setSignColors(topRGB, bottomRGB);
         request.enqueue(new Callback<String>() {
