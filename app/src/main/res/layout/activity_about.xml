@@ -34,76 +34,92 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/settings_features"
-        android:text="@string/settings_features"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="@dimen/settings_horizontal_margin"
-        android:layout_marginStart="@dimen/settings_horizontal_margin"
-        android:layout_marginRight="@dimen/settings_horizontal_margin"
-        android:layout_marginEnd="@dimen/settings_horizontal_margin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="@color/accent_material_dark" />
-
-    <TextView
-        android:id="@+id/pref_voice_title"
-        android:text="@string/settings_send_after_voice"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_below="@id/settings_features"
-        android:layout_alignLeft="@id/settings_features"
-        android:layout_alignStart="@id/settings_features"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar">
 
-    <TextView
-        android:id="@+id/pref_voice_sum"
-        android:text="@string/settings_sum_send_after_voice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pref_voice_title"
-        android:layout_alignLeft="@id/settings_features"
-        android:layout_alignStart="@id/settings_features"
-        android:layout_toLeftOf="@+id/pref_voice_switch"
-        android:layout_toStartOf="@+id/pref_voice_switch"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
 
-    <android.support.v7.widget.SwitchCompat
-        android:id="@+id/pref_voice_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pref_voice_title"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="@dimen/settings_horizontal_margin"
-        android:layout_marginEnd="@dimen/settings_horizontal_margin" />
+            <TextView
+                android:id="@+id/settings_features"
+                android:text="@string/settings_features"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="@dimen/settings_horizontal_margin"
+                android:layout_marginStart="@dimen/settings_horizontal_margin"
+                android:layout_marginRight="@dimen/settings_horizontal_margin"
+                android:layout_marginEnd="@dimen/settings_horizontal_margin"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/accent_material_dark" />
 
-    <TextView
-        android:text="@string/about_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pref_voice_sum"
-        android:layout_marginTop="16dp"
-        android:id="@+id/textView4"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:layout_alignLeft="@id/settings_features"
-        android:layout_alignStart="@id/settings_features"
-        android:layout_alignRight="@id/pref_voice_switch"
-        android:layout_alignEnd="@id/pref_voice_switch"
-        android:textColor="@color/accent_material_dark" />
+            <TextView
+                android:id="@+id/pref_voice_title"
+                android:text="@string/settings_send_after_voice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_below="@id/settings_features"
+                android:layout_alignLeft="@id/settings_features"
+                android:layout_alignStart="@id/settings_features"/>
 
-    <TextView
-        android:id="@+id/about_text"
-        android:text="@string/about_disclaimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@id/settings_features"
-        android:layout_alignStart="@id/settings_features"
-        android:layout_alignRight="@id/pref_voice_switch"
-        android:layout_alignEnd="@id/pref_voice_switch"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+            <TextView
+                android:id="@+id/pref_voice_sum"
+                android:text="@string/settings_sum_send_after_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pref_voice_title"
+                android:layout_alignLeft="@id/settings_features"
+                android:layout_alignStart="@id/settings_features"
+                android:layout_toLeftOf="@+id/pref_voice_switch"
+                android:layout_toStartOf="@+id/pref_voice_switch"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/pref_voice_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pref_voice_title"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/settings_horizontal_margin"
+                android:layout_marginEnd="@dimen/settings_horizontal_margin" />
+
+            <TextView
+                android:text="@string/about_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pref_voice_sum"
+                android:layout_marginTop="16dp"
+                android:id="@+id/textView4"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:layout_alignLeft="@id/settings_features"
+                android:layout_alignStart="@id/settings_features"
+                android:layout_alignRight="@id/pref_voice_switch"
+                android:layout_alignEnd="@id/pref_voice_switch"
+                android:textColor="@color/accent_material_dark" />
+
+            <TextView
+                android:id="@+id/about_text"
+                android:text="@string/about_disclaimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:layout_alignLeft="@id/settings_features"
+                android:layout_alignStart="@id/settings_features"
+                android:layout_alignRight="@id/pref_voice_switch"
+                android:layout_alignEnd="@id/pref_voice_switch"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

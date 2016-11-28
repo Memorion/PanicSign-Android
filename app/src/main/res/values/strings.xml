@@ -17,6 +17,7 @@
         \n\nThis project was inspired by <a href="https://panic.com/blog/the-panic-sign/">this</a> blog post.
 
         \n\nThe code is open source and can be found on <a href="https://github.com/Memorion/PanicSign">Github</a>.
+        \n
     </string>
 
     <string name="key_pref_auto_send" translatable="false">PREF_AUTO_SEND</string>
