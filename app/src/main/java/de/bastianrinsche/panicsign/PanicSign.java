@@ -7,7 +7,6 @@ import com.squareup.leakcanary.LeakCanary;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class PanicSign extends Application {
     private static ColorUtils colorUtils;
@@ -34,7 +33,6 @@ public class PanicSign extends Application {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
                 .baseUrl("https://signserver.panic.com/")
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
         colorUtils = new ColorUtils(getApplicationContext());

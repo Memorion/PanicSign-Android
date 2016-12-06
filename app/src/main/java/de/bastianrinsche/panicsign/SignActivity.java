@@ -184,10 +184,10 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
         String topRGB = colorUtils.colorToRGBString(topControl.getSelected());
         String bottomRGB = colorUtils.colorToRGBString(bottomControl.getSelected());
 
-        Call<String> request = PanicSign.getSignService().setSignColors(topRGB, bottomRGB);
-        request.enqueue(new Callback<String>() {
+        Call<Void> request = PanicSign.getSignService().setSignColors(topRGB, bottomRGB);
+        request.enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
+            public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()) {
                     if (response.code() == 429) {
                         showErrorSnackbar(R.string.error_rate_limited);
@@ -198,7 +198,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 showErrorSnackbar(R.string.error_generic);
             }
         });

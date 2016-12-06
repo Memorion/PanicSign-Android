@@ -12,6 +12,6 @@ interface SignService {
             "User-Agent: Panic Sign Android"
     })
     @GET("set/{topColor}/{bottomColor}")
-    Call<String> setSignColors(@Path(value = "topColor", encoded = true) String topColor,
-                               @Path(value = "bottomColor", encoded = true) String bottomColor);
+    Call<Void> setSignColors(@Path(value = "topColor", encoded = true) String topColor,
+                             @Path(value = "bottomColor", encoded = true) String bottomColor);
 }
