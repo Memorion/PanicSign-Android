@@ -80,13 +80,6 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
         // disable all caps button for api < 14
         change.setTransformationMethod(null);
 
-        if (hasVoiceExtra()) {
-            handleVoiceInteraction();
-            if (autoSendEnabled()) {
-                sendChangeRequest();
-            }
-        }
-
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         shakeDetector = new ShakeDetector(this);
         colorUtils = PanicSign.getColorUtils();
@@ -106,6 +99,13 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
                 changeSignColor(bottom, color);
             }
         });
+
+        if (hasVoiceExtra()) {
+            handleVoiceInteraction();
+            if (autoSendEnabled()) {
+                sendChangeRequest();
+            }
+        }
     }
 
     @Override
