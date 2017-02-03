@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -38,12 +37,9 @@ public class AboutActivity extends AppCompatActivity {
         boolean autoSend = preferences.getBoolean(pref_key, false);
 
         voiceSwitch.setChecked(autoSend);
-        voiceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean(pref_key, isChecked).apply();
-            }
-        });
+        voiceSwitch.setOnCheckedChangeListener(
+                (buttonView, isChecked) -> preferences.edit().putBoolean(pref_key, isChecked).apply()
+        );
     }
 
     @OnClick(R.id.dismiss)

@@ -87,18 +87,8 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
         changeSignColor(top, topControl.getSelected());
         changeSignColor(bottom, bottomControl.getSelected());
 
-        topControl.setOnColorSelectedListener(new ColorControl.OnColorSelectedListener() {
-            @Override
-            public void onColorSelected(String color) {
-                changeSignColor(top, color);
-            }
-        });
-        bottomControl.setOnColorSelectedListener(new ColorControl.OnColorSelectedListener() {
-            @Override
-            public void onColorSelected(String color) {
-                changeSignColor(bottom, color);
-            }
-        });
+        topControl.setOnColorSelectedListener(color -> changeSignColor(top, color));
+        bottomControl.setOnColorSelectedListener(color -> changeSignColor(bottom, color));
 
         if (hasVoiceExtra()) {
             handleVoiceInteraction();

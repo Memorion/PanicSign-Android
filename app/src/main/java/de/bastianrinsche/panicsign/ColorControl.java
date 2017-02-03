@@ -20,14 +20,11 @@ class ColorControl {
 
         selection = initSelection;
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String current = (String)view.getTag();
-                if (!selection.equals(current)) {
-                    selection = current;
-                    setSelected(selection);
-                }
+        View.OnClickListener onClickListener = v -> {
+            String current = (String)v.getTag();
+            if (!selection.equals(current)) {
+                selection = current;
+                setSelected(selection);
             }
         };
 
