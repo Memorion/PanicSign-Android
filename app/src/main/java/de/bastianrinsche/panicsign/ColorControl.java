@@ -35,12 +35,10 @@ class ColorControl {
     }
 
     String getSelected() {
-        for (View v : colors) {
-            if (v.isSelected()) {
-                return (String)v.getTag();
-            }
+        if (selection == null) {
+            throw new IllegalStateException("One color has to be selected at all times");
         }
-        throw new IllegalStateException("One color has to be selected at all times");
+        return selection;
     }
 
     void setSelected(String selection) {
