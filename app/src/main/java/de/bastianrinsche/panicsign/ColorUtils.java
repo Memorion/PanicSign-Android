@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
 import android.util.Log;
-import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
