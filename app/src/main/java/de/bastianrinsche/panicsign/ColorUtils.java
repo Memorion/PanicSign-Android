@@ -5,13 +5,14 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import timber.log.Timber;
 
 class ColorUtils {
 
@@ -58,7 +59,7 @@ class ColorUtils {
     static int resolveColor(Context context, HashMap<String, Integer> colorIDMap, String color) {
         Integer id = colorIDMap.get(color);
         if (id != null) { return ContextCompat.getColor(context, id); }
-        Log.e("ColorUtils", "Searched colorMap for invalid String: " + color);
+        Timber.e("ColorUtils", "Searched colorMap for invalid String: " + color);
         return ContextCompat.getColor(context, R.color.purple);
     }
 

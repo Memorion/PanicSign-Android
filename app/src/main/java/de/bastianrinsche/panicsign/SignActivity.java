@@ -13,7 +13,6 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +26,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class SignActivity extends AppCompatActivity implements ShakeDetector.Listener {
     static {
@@ -129,7 +129,7 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
             Pair<String, String> colors = colorUtils.colorsFromQuery(colorUtils.intlNameKeyMap, query);
             topControl.setSelected(colors.first);
             bottomControl.setSelected(colors.second);
-            Log.d("VOICE", "Pair<" + colors.first + ", " + colors.second + ">");
+            Timber.d("VOICE", "Pair<" + colors.first + ", " + colors.second + ">");
         } catch (IllegalArgumentException e) {
             //TODO maybe random
         }
