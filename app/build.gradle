@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
+// Manifest version information!
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0
+
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.2'
@@ -9,8 +14,10 @@ android {
         applicationId "de.bastianrinsche.panicsign"
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+
+        versionCode versionMajor * 1000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
         vectorDrawables.useSupportLibrary = true
 
         compileOptions {
@@ -22,18 +29,30 @@ android {
     signingConfigs {
         debug {
             keyAlias 'debug'
-            keyPassword 'android'
             storeFile file('../debug.keystore')
+            keyPassword 'android'
             storePassword 'android'
+        }
+        release {
+            Properties secrets = new Properties()
+            secrets.load(project.rootProject.file('release.properties').newDataInputStream())
+
+            keyAlias "release"
+            storeFile file("../release.keystore")
+            keyPassword secrets["key_password"]
+            storePassword secrets["keystore_password"]
         }
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            minifyEnabled false
+            applicationIdSuffix '.debug'
             signingConfig signingConfigs.debug
         }
     }
