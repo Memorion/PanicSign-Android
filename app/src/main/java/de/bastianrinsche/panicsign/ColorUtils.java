@@ -9,17 +9,19 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
 class ColorUtils {
 
-    private final String[] colorKeys;
+    private String[] colorKeys;
     private HashMap<String, String> colorRGBMap;
     HashMap<String, String> intlNameKeyMap;
     HashMap<String, Integer> colorMap;
+
+    //Used in Unit Tests
+    ColorUtils() {}
 
     ColorUtils(Context context) {
 
@@ -65,23 +67,25 @@ class ColorUtils {
     }
 
     Pair<String, String> colorsFromQuery(HashMap<String, String> intlNameKeyMap, String query) {
-        Log.d("QUERY", query);
 
         List<String> possibleColors = new ArrayList<>(intlNameKeyMap.keySet().size());
         possibleColors.addAll(intlNameKeyMap.keySet());
 
         List<String> foundColors = new LinkedList<>();
 
-        for (int i = 0; i < query.length(); i++) {
-            Iterator<String> searchIter = possibleColors.iterator();
-            while (searchIter.hasNext()) {
-                String search = searchIter.next();
-                if (i + search.length() <= query.length()
-                        && query.substring(i, i + search.length()).equalsIgnoreCase(search)) {
-                    searchIter.remove();
-                    foundColors.add(intlNameKeyMap.get(search));
+        int searchedTo = 0;
+        while (searchedTo < query.length()) {
+            for (String searchColor : possibleColors) {
+                boolean found = (searchedTo + searchColor.length() <= query.length()
+                        && query.substring(searchedTo, searchedTo + searchColor.length())
+                                .equalsIgnoreCase(searchColor));
+
+                if (found) {
+                    foundColors.add(intlNameKeyMap.get(searchColor));
+                    searchedTo += searchColor.length();
                 }
             }
+            searchedTo++;
         }
 
         switch (foundColors.size()) {
@@ -90,14 +94,6 @@ class ColorUtils {
             case 1:
                 // just use the color for both parts
                 return new Pair<>(foundColors.get(0), foundColors.get(0));
-            case 2:
-                return new Pair<>(foundColors.get(0), foundColors.get(1));
-            case 3:
-                // handles light blue and dark green matching again for and blue and green for now
-                return new Pair<>(foundColors.get(0), foundColors.get(foundColors.size()-1));
-            case 4:
-                // handles light blue and dark green in the same query
-                return new Pair<>(foundColors.get(0), foundColors.get(foundColors.size()-2));
             default:
                 return new Pair<>(foundColors.get(0), foundColors.get(1));
         }
