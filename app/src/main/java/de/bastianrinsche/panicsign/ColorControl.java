@@ -49,6 +49,7 @@ class ColorControl {
             String tag = (String)v.getTag();
             if (tag.equals(selection)) {
                 v.setSelected(true);
+                this.selection = selection;
                 if (listener != null) {
                     listener.onColorSelected(tag);
                 }
