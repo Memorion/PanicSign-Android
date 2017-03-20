@@ -11,3 +11,5 @@ I added two additional features:
 
 On devices with the Google play services and Google Now/Assistant enabled this should work:  
 "Ok Google, search for `color1` and `color2` in/on Panic Sign".
+
+![Voice Demo](art/voice_demo.gif)
