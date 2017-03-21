@@ -28,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
 
-public class SignActivity extends AppCompatActivity implements ShakeDetector.Listener {
+public class SignActivity extends AppCompatActivity {
     static {
         // https://medium.com/@chrisbanes/appcompat-v23-2-age-of-the-vectors-91cbafa87c88
         // needed for LayerDrawables with <vector> inside < on api 21
@@ -81,7 +81,16 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
         change.setTransformationMethod(null);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        shakeDetector = new ShakeDetector(this);
+        shakeDetector = new ShakeDetector(() -> {
+            Pair<String, String> colors = colorUtils.getRandomColors();
+            topControl.setSelected(colors.first);
+            bottomControl.setSelected(colors.second);
+
+            if (autoSendEnabled()) {
+                sendChangeRequest();
+            }
+        });
+
         colorUtils = PanicSign.getColorUtils();
 
         changeSignColor(top, topControl.getSelected());
@@ -149,17 +158,6 @@ public class SignActivity extends AppCompatActivity implements ShakeDetector.Lis
             } else {
                 bottomSign.setTint(color);
             }
-        }
-    }
-
-    @Override
-    public void hearShake() {
-        Pair<String, String> colors = colorUtils.getRandomColors();
-        topControl.setSelected(colors.first);
-        bottomControl.setSelected(colors.second);
-
-        if (autoSendEnabled()) {
-            sendChangeRequest();
         }
     }
 
