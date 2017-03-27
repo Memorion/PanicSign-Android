@@ -57,20 +57,9 @@ public class SignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
-        String topSelection;
-        String bottomSelection;
-
-        if (savedInstanceState != null) {
-            topSelection = savedInstanceState.getString(getString(R.string.key_top));
-            bottomSelection = savedInstanceState.getString(getString(R.string.key_bottom));
-        } else {
-            topSelection = getString(R.string.key_light_blue);
-            bottomSelection = getString(R.string.key_blue);
-        }
-
         ButterKnife.bind(this);
-        topControl = new ColorControl(topColorView, topSelection);
-        bottomControl = new ColorControl(bottomColorView, bottomSelection);
+        topControl = new ColorControl(topColorView, getString(R.string.key_light_blue));
+        bottomControl = new ColorControl(bottomColorView, getString(R.string.key_blue));
 
         LayerDrawable sign = (LayerDrawable)signView.getDrawable();
         topSign = sign.findDrawableByLayerId(R.id.sign_top);
@@ -99,11 +88,11 @@ public class SignActivity extends AppCompatActivity {
         topControl.setOnColorSelectedListener(color -> changeSignColor(top, color));
         bottomControl.setOnColorSelectedListener(color -> changeSignColor(bottom, color));
 
-        if (hasVoiceExtra()) {
+        if (savedInstanceState != null) {
+            topControl.setSelected(savedInstanceState.getString(getString(R.string.key_top)));
+            bottomControl.setSelected(savedInstanceState.getString(getString(R.string.key_bottom)));
+        } else if (hasVoiceExtra()) {
             handleVoiceInteraction();
-            if (autoSendEnabled()) {
-                sendChangeRequest();
-            }
         }
     }
 
@@ -141,6 +130,10 @@ public class SignActivity extends AppCompatActivity {
             Timber.d("VOICE", "Pair<" + colors.first + ", " + colors.second + ">");
         } catch (IllegalArgumentException e) {
             //TODO maybe random
+        }
+
+        if (autoSendEnabled()) {
+            sendChangeRequest();
         }
     }
 
