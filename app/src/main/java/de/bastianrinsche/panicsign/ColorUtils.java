@@ -59,7 +59,7 @@ class ColorUtils {
     static int resolveColor(Context context, HashMap<String, Integer> colorIDMap, String color) {
         Integer id = colorIDMap.get(color);
         if (id != null) { return ContextCompat.getColor(context, id); }
-        Timber.e("ColorUtils", "Searched colorMap for invalid String: " + color);
+        Timber.e("Searched colorMap for invalid String: " + color);
         return ContextCompat.getColor(context, R.color.purple);
     }
 
