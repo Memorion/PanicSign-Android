@@ -17,8 +17,7 @@ class ColorControl {
 
     ColorControl(View view, String initSelection) {
         ButterKnife.bind(this, view);
-
-        selection = initSelection;
+        this.selection = initSelection;
 
         View.OnClickListener onClickListener = v -> {
             String current = (String)v.getTag();
@@ -31,7 +30,6 @@ class ColorControl {
         for (ImageView v : colors) {
             v.setOnClickListener(onClickListener);
         }
-        setSelected(selection);
     }
 
     String getSelected() {
