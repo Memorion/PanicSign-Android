@@ -83,9 +83,10 @@ class ColorUtils {
 
                 if (found) {
                     foundColors.add(intlNameKeyMap.get(searchColor));
-                    searchedTo += searchColor.length();
+                    searchedTo += searchColor.length() - 1;
                 }
             }
+            if (foundColors.size() == 2) { break; }
             searchedTo++;
         }
 

@@ -3,9 +3,7 @@ package de.bastianrinsche.panicsign;
 import android.support.v4.util.Pair;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
 
@@ -183,6 +181,21 @@ public class VoiceQueryTests {
 
         query = "light blue and green";
         result = colorUtils.colorsFromQuery(englishColorMap, query);
+        assertEquals(LIGHTBLUE, result.first);
+        assertEquals(GREEN, result.second);
+    }
+
+    @Test
+    public void long_query() {
+        StringBuilder x = new StringBuilder();
+        x.append("light blue ");
+        x.append("green");
+        for (int i = 0; i < englishColors.length*5000; i++) {
+            x.append(englishColors[i % 10]);
+        }
+
+        String query = x.toString();
+        Pair<String, String> result = colorUtils.colorsFromQuery(englishColorMap, query);
         assertEquals(LIGHTBLUE, result.first);
         assertEquals(GREEN, result.second);
     }
