@@ -88,11 +88,11 @@ public class SignActivity extends AppCompatActivity {
         topControl.setOnColorSelectedListener(color -> changeSignColor(top, color));
         bottomControl.setOnColorSelectedListener(color -> changeSignColor(bottom, color));
 
-        if (savedInstanceState != null) {
+        if (hasVoiceExtra(getIntent())) {
+            handleVoiceInteraction(getIntent());
+        } else if (savedInstanceState != null) {
             topControl.setSelected(savedInstanceState.getString(getString(R.string.key_top)));
             bottomControl.setSelected(savedInstanceState.getString(getString(R.string.key_bottom)));
-        } else if (hasVoiceExtra()) {
-            handleVoiceInteraction();
         }
     }
 
@@ -100,6 +100,15 @@ public class SignActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         shakeDetector.start(sensorManager);
+    }
+
+    @Override
+    protected void onNewIntent(Intent newIntent) {
+        super.onNewIntent(newIntent);
+        setIntent(newIntent);
+        if (hasVoiceExtra(newIntent)) {
+            handleVoiceInteraction(newIntent);
+        }
     }
 
     @Override
@@ -115,19 +124,18 @@ public class SignActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-    private boolean hasVoiceExtra() {
-        Intent intent = getIntent();
+    private boolean hasVoiceExtra(Intent intent) {
         return SearchIntents.ACTION_SEARCH.equals(intent.getAction())
                 && intent.hasExtra(SearchManager.QUERY);
     }
 
-    private void handleVoiceInteraction() {
-        String query = getIntent().getStringExtra(SearchManager.QUERY);
+    private void handleVoiceInteraction(Intent intent) {
+        String query = intent.getStringExtra(SearchManager.QUERY);
         try {
             Pair<String, String> colors = colorUtils.colorsFromQuery(colorUtils.intlNameKeyMap, query);
             topControl.setSelected(colors.first);
             bottomControl.setSelected(colors.second);
-            Timber.d("VOICE", "Pair<" + colors.first + ", " + colors.second + ">");
+            Timber.d("VOICE Pair<" + colors.first + ", " + colors.second + ">");
         } catch (IllegalArgumentException e) {
             //TODO maybe random
         }
@@ -187,7 +195,7 @@ public class SignActivity extends AppCompatActivity {
 
     private boolean autoSendEnabled() {
         return PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean(getString(R.string.key_pref_auto_send), true);
+                .getBoolean(getString(R.string.key_pref_auto_send), false);
     }
 
     private void showErrorSnackbar(int messageId) {
