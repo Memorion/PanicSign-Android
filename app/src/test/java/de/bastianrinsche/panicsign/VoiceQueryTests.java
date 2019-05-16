@@ -22,12 +22,12 @@ public class VoiceQueryTests {
     private final String PURPLE = "PURPLE";
     private final String PINK = "PINK";
 
-    private String[] colorKeys = { RED, ORANGE, YELLOW, GREEN, DARKGREEN,
+    private final String[] colorKeys = { RED, ORANGE, YELLOW, GREEN, DARKGREEN,
                                    TEAL, LIGHTBLUE, BLUE, PURPLE, PINK };
 
-    private ColorUtils colorUtils = new ColorUtils();
+    private final ColorUtils colorUtils = new ColorUtils();
 
-    private String[] englishColors = {"red", "orange", "yellow", "green", "dark green",
+    private final String[] englishColors = {"red", "orange", "yellow", "green", "dark green",
             "teal", "light blue", "blue", "purple", "pink"};
 
     private HashMap<String, String> englishColorMap;

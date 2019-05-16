@@ -8,16 +8,17 @@ import android.graphics.drawable.LayerDrawable;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.util.Pair;
+
 import com.google.android.gms.actions.SearchIntents;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.seismic.ShakeDetector;
 
 import butterknife.BindView;

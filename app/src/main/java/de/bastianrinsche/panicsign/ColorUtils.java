@@ -3,8 +3,9 @@ package de.bastianrinsche.panicsign;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.util.Pair;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.util.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,7 +60,7 @@ class ColorUtils {
     static int resolveColor(Context context, HashMap<String, Integer> colorIDMap, String color) {
         Integer id = colorIDMap.get(color);
         if (id != null) { return ContextCompat.getColor(context, id); }
-        Timber.e("Searched colorMap for invalid String: " + color);
+        Timber.e("Searched colorMap for invalid String: %s", color);
         return ContextCompat.getColor(context, R.color.purple);
     }
 
