@@ -10,8 +10,6 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -21,9 +19,7 @@ import com.google.android.gms.actions.SearchIntents;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.seismic.ShakeDetector;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import de.bastianrinsche.panicsign.databinding.ActivitySignBinding;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,11 +31,7 @@ public class SignActivity extends AppCompatActivity {
         // needed for LayerDrawables with <vector> inside < on api 21
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
-    @BindView(R.id.button_change) Button change;
-    @BindView(R.id.view_sign) ImageView signView;
-    @BindView(R.id.control_top) View topColorView;
-    @BindView(R.id.control_bottom) View bottomColorView;
-
+    private ActivitySignBinding binding;
     private ColorControl topControl;
     private ColorControl bottomControl;
 
@@ -56,19 +48,20 @@ public class SignActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign);
+        binding = ActivitySignBinding.inflate(getLayoutInflater());
+        View root = binding.getRoot();
+        setContentView(root);
 
-        ButterKnife.bind(this);
-        topControl = new ColorControl(topColorView, getString(R.string.key_light_blue));
-        bottomControl = new ColorControl(bottomColorView, getString(R.string.key_blue));
+        topControl = new ColorControl(binding.controlTop, getString(R.string.key_light_blue));
+        bottomControl = new ColorControl(binding.controlBottom, getString(R.string.key_blue));
 
-        LayerDrawable sign = (LayerDrawable)signView.getDrawable();
+        LayerDrawable sign = (LayerDrawable)binding.viewSign.getDrawable();
         topSign = sign.findDrawableByLayerId(R.id.sign_top);
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom);
 
-        signView.setImageDrawable(sign);
+        binding.viewSign.setImageDrawable(sign);
         // disable all caps button for api < 14
-        change.setTransformationMethod(null);
+        binding.buttonChange.setTransformationMethod(null);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         shakeDetector = new ShakeDetector(() -> {
@@ -88,6 +81,8 @@ public class SignActivity extends AppCompatActivity {
 
         topControl.setOnColorSelectedListener(color -> changeSignColor(top, color));
         bottomControl.setOnColorSelectedListener(color -> changeSignColor(bottom, color));
+        binding.buttonOverflow.setOnClickListener(v -> openAbout());
+        binding.buttonChange.setOnClickListener(v -> sendChangeRequest());
 
         if (hasVoiceExtra(getIntent())) {
             handleVoiceInteraction(getIntent());
@@ -163,13 +158,11 @@ public class SignActivity extends AppCompatActivity {
         }
     }
 
-    @OnClick(R.id.button_overflow)
     void openAbout() {
         Intent about = new Intent(this, AboutActivity.class);
         startActivity(about);
     }
 
-    @OnClick(R.id.button_change)
     void sendChangeRequest() {
         String topRGB = colorUtils.colorToRGBString(topControl.getSelected());
         String bottomRGB = colorUtils.colorToRGBString(bottomControl.getSelected());
@@ -200,7 +193,7 @@ public class SignActivity extends AppCompatActivity {
     }
 
     private void showErrorSnackbar(int messageId) {
-        Snackbar snackbar = Snackbar.make(bottomColorView, messageId, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(binding.controlBottom.getRoot(), messageId, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 

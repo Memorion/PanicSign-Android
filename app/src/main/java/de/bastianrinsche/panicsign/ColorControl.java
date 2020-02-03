@@ -3,20 +3,21 @@ package de.bastianrinsche.panicsign;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.Arrays;
 import java.util.List;
 
-import butterknife.BindViews;
-import butterknife.ButterKnife;
+import de.bastianrinsche.panicsign.databinding.LayoutControlsBinding;
 
 class ColorControl {
-    @BindViews({R.id.red, R.id.orange, R.id.yellow, R.id.green, R.id.green2,
-                R.id.teal, R.id.light_blue, R.id.blue, R.id.purple, R.id.pink})
-                List<ImageView> colors;
+    private List<ImageView> colors;
     private String selection;
     private OnColorSelectedListener listener;
 
-    ColorControl(View view, String initSelection) {
-        ButterKnife.bind(this, view);
+    ColorControl(LayoutControlsBinding binding, String initSelection) {
+        colors = Arrays.asList(
+                binding.red, binding.orange, binding.yellow, binding.green, binding.green2,
+                binding.teal, binding.lightBlue, binding.blue, binding.purple, binding.pink
+        );
         setSelected(initSelection);
 
         View.OnClickListener onClickListener = v -> {
