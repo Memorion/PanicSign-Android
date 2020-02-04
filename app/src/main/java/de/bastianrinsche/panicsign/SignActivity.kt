@@ -156,8 +156,8 @@ class SignActivity : AppCompatActivity() {
         val topRGB = colorUtils.colorToRGBString(topControl.selected)
         val bottomRGB = colorUtils.colorToRGBString(bottomControl.selected)
         val request = signService.setSignColors(topRGB, bottomRGB)
-        request!!.enqueue(object : Callback<Void?> {
-            override fun onResponse(call: Call<Void?>, response: Response<Void?>) {
+        request.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (!response.isSuccessful) {
                     if (response.code() == 429) {
                         showErrorSnackbar(R.string.error_rate_limited)
@@ -167,7 +167,7 @@ class SignActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<Void?>, t: Throwable) {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 showErrorSnackbar(R.string.error_generic)
             }
         })

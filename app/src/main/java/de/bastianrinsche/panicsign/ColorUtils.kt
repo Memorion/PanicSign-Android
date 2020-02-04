@@ -37,8 +37,8 @@ class ColorUtils {
         }
     }
 
-    fun colorToRGBString(color: String?): String? {
-        return colorRGBMap[color]
+    fun colorToRGBString(color: String): String {
+        return colorRGBMap[color]!!
     }
 
     fun colorsFromQuery(intlNameKeyMap: HashMap<String, String>, query: String): Pair<String, String> {
