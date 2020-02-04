@@ -2,7 +2,6 @@ package de.bastianrinsche.panicsign
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import androidx.core.util.Pair
 import timber.log.Timber
 import java.util.*
 
@@ -42,7 +41,7 @@ class ColorUtils {
         return colorRGBMap[color]
     }
 
-    fun colorsFromQuery(intlNameKeyMap: HashMap<String?, String?>, query: String): Pair<String, String> {
+    fun colorsFromQuery(intlNameKeyMap: HashMap<String, String>, query: String): Pair<String, String> {
         val possibleColors: MutableList<String> = ArrayList(intlNameKeyMap.keys.size)
         intlNameKeyMap.keys.filterNotNull().toCollection(possibleColors)
         val foundColors: MutableList<String?> = LinkedList()
@@ -64,8 +63,8 @@ class ColorUtils {
         }
         return when (foundColors.size) {
             0 -> throw IllegalArgumentException("No color found")
-            1 -> Pair(foundColors[0], foundColors[0]) // just use the color for both parts
-            else -> Pair(foundColors[0], foundColors[1])
+            1 -> Pair(foundColors[0]!!, foundColors[0]!!) // just use the color for both parts
+            else -> Pair(foundColors[0]!!, foundColors[1]!!)
         }
     }
 
@@ -79,7 +78,7 @@ class ColorUtils {
 
     companion object {
         @JvmStatic
-        fun resolveColor(context: Context?, colorIDMap: HashMap<String?, Int?>, color: String?): Int {
+        fun resolveColor(context: Context?, colorIDMap: HashMap<String, Int>, color: String?): Int {
             val id = colorIDMap[color]
             if (id != null) {
                 return ContextCompat.getColor(context!!, id)

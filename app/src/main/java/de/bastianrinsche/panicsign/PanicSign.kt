@@ -15,8 +15,7 @@ class PanicSign : Application() {
 
     companion object {
         @JvmStatic
-        var colorUtils: ColorUtils? = null
-            private set
+        lateinit var colorUtils: ColorUtils
 
         private val client = if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())
