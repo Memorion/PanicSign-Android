@@ -14,7 +14,6 @@ class PanicSign : Application() {
     }
 
     companion object {
-        @JvmStatic
         lateinit var colorUtils: ColorUtils
 
         private val client = if (BuildConfig.DEBUG) {
@@ -33,7 +32,6 @@ class PanicSign : Application() {
                 .baseUrl("https://signserver.panic.com/")
                 .build()
 
-        @JvmStatic
         var signService: SignService = retrofit.create(SignService::class.java)
     }
 }

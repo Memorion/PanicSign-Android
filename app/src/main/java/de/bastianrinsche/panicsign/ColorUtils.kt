@@ -77,7 +77,6 @@ class ColorUtils {
         }
 
     companion object {
-        @JvmStatic
         fun resolveColor(context: Context?, colorIDMap: HashMap<String, Int>, color: String?): Int {
             val id = colorIDMap[color]
             if (id != null) {
