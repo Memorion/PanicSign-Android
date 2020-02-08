@@ -3,7 +3,6 @@ package de.bastianrinsche.panicsign
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.text.method.LinkMovementMethod
-import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
 import de.bastianrinsche.panicsign.databinding.ActivityAboutBinding
 
@@ -18,7 +17,7 @@ class AboutActivity : AppCompatActivity() {
         binding.aboutText.movementMethod = LinkMovementMethod.getInstance()
         binding.prefVoiceSwitch.isChecked = autoSend
         binding.dismiss.setOnClickListener { onBackPressed() }
-        binding.prefVoiceSwitch.setOnCheckedChangeListener { _: CompoundButton?, checked: Boolean ->
+        binding.prefVoiceSwitch.setOnCheckedChangeListener { _, checked: Boolean ->
             preferences.edit().putBoolean(prefKey, checked).apply()
         }
     }

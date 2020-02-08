@@ -43,7 +43,7 @@ class ColorUtils {
 
     fun colorsFromQuery(intlNameKeyMap: HashMap<String, String>, query: String): Pair<String, String> {
         val possibleColors: MutableList<String> = ArrayList(intlNameKeyMap.keys.size)
-        intlNameKeyMap.keys.filterNotNull().toCollection(possibleColors)
+        intlNameKeyMap.keys.toCollection(possibleColors)
         val foundColors: MutableList<String?> = LinkedList()
         var searchedTo = 0
         while (searchedTo < query.length) {
