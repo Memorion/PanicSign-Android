@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.gms.actions.SearchIntents
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.seismic.ShakeDetector
-import de.bastianrinsche.panicsign.ColorControl.OnColorSelectedListener
 import de.bastianrinsche.panicsign.ColorUtils.Companion.resolveColor
 import de.bastianrinsche.panicsign.PanicSign.Companion.colorUtils
 import de.bastianrinsche.panicsign.PanicSign.Companion.signService
@@ -38,8 +37,6 @@ class SignActivity : AppCompatActivity() {
     private lateinit var bottomControl: ColorControl
     private lateinit var topSign: Drawable
     private lateinit var bottomSign: Drawable
-    private val top = true
-    private val bottom = false
     private var sensorManager: SensorManager? = null
     private var shakeDetector: ShakeDetector? = null
 
@@ -47,13 +44,18 @@ class SignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        topControl = ColorControl(binding.controlTop, getString(R.string.key_light_blue))
-        bottomControl = ColorControl(binding.controlBottom, getString(R.string.key_blue))
 
         val sign = binding.viewSign.drawable as LayerDrawable
         topSign = sign.findDrawableByLayerId(R.id.sign_top)
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom)
         binding.viewSign.setImageDrawable(sign)
+
+        topControl = ColorControl(binding.controlTop, getString(R.string.key_light_blue)) {
+            colorString -> changeSignColor(Sign.TOP, colorString)
+        }
+        bottomControl = ColorControl(binding.controlBottom, getString(R.string.key_blue)) {
+            colorString -> changeSignColor(Sign.BOTTOM, colorString)
+        }
 
         // disable all caps button for api < 14
         binding.buttonChange.transformationMethod = null
@@ -67,15 +69,8 @@ class SignActivity : AppCompatActivity() {
             }
         })
 
-        changeSignColor(top, topControl.selected)
-        changeSignColor(bottom, bottomControl.selected)
-        val colorListener = object : OnColorSelectedListener {
-            override fun onColorSelected(colorString: String) {
-                changeSignColor(top, colorString)
-            }
-        }
-        topControl.setOnColorSelectedListener(colorListener)
-        bottomControl.setOnColorSelectedListener(colorListener)
+        changeSignColor(Sign.TOP, topControl.selected)
+        changeSignColor(Sign.BOTTOM, bottomControl.selected)
         binding.buttonOverflow.setOnClickListener { openAbout() }
         binding.buttonChange.setOnClickListener { sendChangeRequest() }
 
@@ -130,19 +125,17 @@ class SignActivity : AppCompatActivity() {
         }
     }
 
-    private fun changeSignColor(top: Boolean, colorString: String) {
+    private fun changeSignColor(part: Sign, colorString: String) {
         val color = resolveColor(this, colorUtils.colorMap, colorString)
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-            if (top) {
-                topSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
-            } else {
-                bottomSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+            when (part) {
+                Sign.TOP -> topSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+                Sign.BOTTOM -> bottomSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
             }
         } else {
-            if (top) {
-                topSign.setTint(color)
-            } else {
-                bottomSign.setTint(color)
+            when (part) {
+                Sign.TOP -> topSign.setTint(color)
+                Sign.BOTTOM -> bottomSign.setTint(color)
             }
         }
     }
@@ -180,5 +173,9 @@ class SignActivity : AppCompatActivity() {
 
     private fun showErrorSnackbar(messageId: Int) {
         Snackbar.make(binding.controlBottom.root, messageId, Snackbar.LENGTH_LONG).show()
+    }
+
+    enum class Sign {
+        TOP, BOTTOM
     }
 }

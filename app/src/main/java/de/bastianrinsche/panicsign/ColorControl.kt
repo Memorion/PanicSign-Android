@@ -4,41 +4,35 @@ import android.view.View
 import android.widget.ImageView
 import de.bastianrinsche.panicsign.databinding.LayoutControlsBinding
 
-internal class ColorControl(binding: LayoutControlsBinding, initSelection: String) {
+internal class ColorControl(
+        binding: LayoutControlsBinding,
+        initSelection: String,
+        val onColorSelected: (colorString: String) -> Unit
+) {
     private val colors: List<ImageView> = listOf<ImageView>(
             binding.red, binding.orange, binding.yellow, binding.green, binding.green2,
             binding.teal, binding.lightBlue, binding.blue, binding.purple, binding.pink
     )
-    private var listener: OnColorSelectedListener? = null
-    var selected: String = "MandatoryInitialization"
+    var selected: String = initSelection
         set(newValue) {
             for (v in colors) {
                 val tag = v.tag as String
                 if (tag == newValue) {
                     field = newValue
                     v.isSelected = true
-                    listener?.onColorSelected(tag)
+                    onColorSelected(tag)
                 } else {
                     v.isSelected = false
                 }
             }
         }
 
-    fun setOnColorSelectedListener(listener: OnColorSelectedListener?) {
-        this.listener = listener
-    }
-
-    internal interface OnColorSelectedListener {
-        fun onColorSelected(colorString: String)
-    }
-
     init {
-        selected = initSelection
-        val onClickListener = View.OnClickListener { v: View ->
-            selected = v.tag as String
-        }
+        selected = initSelection // L16 doesn't seem to use the setter logic otherwise
         for (v in colors) {
-            v.setOnClickListener(onClickListener)
+            v.setOnClickListener{ view: View ->
+                selected = view.tag as String
+            }
         }
     }
 }
