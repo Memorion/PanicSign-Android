@@ -3,15 +3,13 @@ package de.bastianrinsche.panicsign
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.hardware.SensorManager
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.updatePadding
 import com.google.android.gms.actions.SearchIntents
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.seismic.ShakeDetector
@@ -19,18 +17,13 @@ import de.bastianrinsche.panicsign.ColorUtils.Companion.resolveColor
 import de.bastianrinsche.panicsign.PanicSign.Companion.colorUtils
 import de.bastianrinsche.panicsign.PanicSign.Companion.signService
 import de.bastianrinsche.panicsign.databinding.ActivitySignBinding
+import dev.chrisbanes.insetter.doOnApplyWindowInsets
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
 class SignActivity : AppCompatActivity() {
-    companion object {
-        init { // https://medium.com/@chrisbanes/appcompat-v23-2-age-of-the-vectors-91cbafa87c88
-               // needed for LayerDrawables with <vector> inside < on api 21
-            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-        }
-    }
 
     private lateinit var binding: ActivitySignBinding
     private lateinit var topControl: ColorControl
@@ -44,42 +37,30 @@ class SignActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val sign = binding.viewSign.drawable as LayerDrawable
-        topSign = sign.findDrawableByLayerId(R.id.sign_top)
-        bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom)
-        binding.viewSign.setImageDrawable(sign)
-
-        topControl = ColorControl(binding.controlTop, getString(R.string.key_light_blue)) {
-            colorString -> changeSignColor(Sign.TOP, colorString)
-        }
-        bottomControl = ColorControl(binding.controlBottom, getString(R.string.key_blue)) {
-            colorString -> changeSignColor(Sign.BOTTOM, colorString)
-        }
-
-        // disable all caps button for api < 14
-        binding.buttonChange.transformationMethod = null
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        shakeDetector = ShakeDetector(ShakeDetector.Listener {
-            val colors = colorUtils.randomColors
-            topControl.selected = colors.first
-            bottomControl.selected = colors.second
-            if (autoSendEnabled()) {
-                sendChangeRequest()
-            }
-        })
-
-        changeSignColor(Sign.TOP, topControl.selected)
-        changeSignColor(Sign.BOTTOM, bottomControl.selected)
-        binding.buttonOverflow.setOnClickListener { openAbout() }
-        binding.buttonChange.setOnClickListener { sendChangeRequest() }
-
+        setup()
+        enableShakeDetection()
         if (hasVoiceExtra(intent)) {
             handleVoiceInteraction(intent)
         } else if (savedInstanceState != null) {
             topControl.selected = savedInstanceState.getString(getString(R.string.key_top))!!
             bottomControl.selected = savedInstanceState.getString(getString(R.string.key_bottom))!!
         }
+    }
+
+    private fun setup() {
+        val sign = binding.viewSign.drawable as LayerDrawable
+        topSign = sign.findDrawableByLayerId(R.id.sign_top)
+        bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom)
+        binding.viewSign.setImageDrawable(sign)
+        topControl = ColorControl(binding.controlTop, getString(R.string.key_light_blue)) {
+            colorString -> changeSignColor(Sign.TOP, colorString)
+        }
+        bottomControl = ColorControl(binding.controlBottom, getString(R.string.key_blue)) {
+            colorString -> changeSignColor(Sign.BOTTOM, colorString)
+        }
+        binding.buttonOverflow.setOnClickListener { openAbout() }
+        binding.buttonChange.setOnClickListener { sendChangeRequest() }
+        fixBottomButtonPadding()
     }
 
     override fun onStart() {
@@ -106,6 +87,26 @@ class SignActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
     }
 
+    private fun enableShakeDetection() {
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        shakeDetector = ShakeDetector(ShakeDetector.Listener {
+            val colors = colorUtils.randomColors
+            topControl.selected = colors.first
+            bottomControl.selected = colors.second
+            if (autoSendEnabled()) {
+                sendChangeRequest()
+            }
+        })
+    }
+
+    private fun fixBottomButtonPadding() {
+        binding.buttonChange.doOnApplyWindowInsets { view, insets, initialState ->
+            view.updatePadding(
+                    bottom = initialState.paddings.bottom + insets.systemWindowInsetBottom
+            )
+        }
+    }
+
     private fun hasVoiceExtra(intent: Intent): Boolean {
         return SearchIntents.ACTION_SEARCH == intent.action && intent.hasExtra(SearchManager.QUERY)
     }
@@ -127,16 +128,9 @@ class SignActivity : AppCompatActivity() {
 
     private fun changeSignColor(part: Sign, colorString: String) {
         val color = resolveColor(this, colorUtils.colorMap, colorString)
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-            when (part) {
-                Sign.TOP -> topSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
-                Sign.BOTTOM -> bottomSign.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
-            }
-        } else {
-            when (part) {
-                Sign.TOP -> topSign.setTint(color)
-                Sign.BOTTOM -> bottomSign.setTint(color)
-            }
+        when (part) {
+            Sign.TOP -> topSign.setTint(color)
+            Sign.BOTTOM -> bottomSign.setTint(color)
         }
     }
 

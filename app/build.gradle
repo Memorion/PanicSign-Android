@@ -5,14 +5,14 @@ apply plugin: 'kotlin-android-extensions'
 // Manifest version information!
 def versionMajor = 1
 def versionMinor = 0
-def versionPatch = 3
+def versionPatch = 4
 
 android {
     compileSdkVersion 29
 
     defaultConfig {
         applicationId "de.bastianrinsche.panicsign"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
 
         versionCode versionMajor * 1000 + versionMinor * 100 + versionPatch
@@ -76,8 +76,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.3.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.5.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup:seismic:1.0.2'
+    implementation 'dev.chrisbanes:insetter-ktx:0.2.1'
 }
