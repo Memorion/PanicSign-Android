@@ -1,9 +1,9 @@
 package de.bastianrinsche.panicsign
 
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.text.method.LinkMovementMethod
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import de.bastianrinsche.panicsign.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity() {

@@ -7,9 +7,10 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.updatePadding
+import androidx.lifecycle.coroutineScope
+import androidx.preference.PreferenceManager
 import com.google.android.gms.actions.SearchIntents
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.seismic.ShakeDetector
@@ -18,10 +19,10 @@ import de.bastianrinsche.panicsign.PanicSign.Companion.colorUtils
 import de.bastianrinsche.panicsign.PanicSign.Companion.signService
 import de.bastianrinsche.panicsign.databinding.ActivitySignBinding
 import dev.chrisbanes.insetter.doOnApplyWindowInsets
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.io.IOException
 
 class SignActivity : AppCompatActivity() {
 
@@ -142,22 +143,19 @@ class SignActivity : AppCompatActivity() {
     private fun sendChangeRequest() {
         val topRGB = colorUtils.colorToRGBString(topControl.selected)
         val bottomRGB = colorUtils.colorToRGBString(bottomControl.selected)
-        val request = signService.setSignColors(topRGB, bottomRGB)
-        request.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (!response.isSuccessful) {
-                    if (response.code() == 429) {
-                        showErrorSnackbar(R.string.error_rate_limited)
-                    } else {
-                        showErrorSnackbar(R.string.error_generic)
-                    }
+        lifecycle.coroutineScope.launch(context = Dispatchers.IO) {
+            val message = try {
+                val response = signService.setSignColors(topRGB, bottomRGB)
+                when (response.code()) {
+                    200 -> R.string.success
+                    429 -> R.string.error_rate_limited
+                    else -> R.string.error_generic
                 }
+            } catch (e: IOException) {
+                R.string.error_generic
             }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                showErrorSnackbar(R.string.error_generic)
-            }
-        })
+            showSnackbar(message)
+        }
     }
 
     private fun autoSendEnabled(): Boolean {
@@ -165,7 +163,7 @@ class SignActivity : AppCompatActivity() {
                 .getBoolean(getString(R.string.key_pref_auto_send), false)
     }
 
-    private fun showErrorSnackbar(messageId: Int) {
+    private fun showSnackbar(messageId: Int) {
         Snackbar.make(binding.controlBottom.root, messageId, Snackbar.LENGTH_LONG).show()
     }
 
