@@ -18,8 +18,7 @@
         android:layout_above="@+id/button_change"
         app:layout_constraintBottom_toTopOf="@id/button_change"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_widthPercent="20%" />
+        app:layout_constraintWidth_percent="0.2"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/view_sign"

@@ -10,20 +10,4 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="ColorWrapper" >
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="layout_widthPercent">@fraction/widthPercent</item>
-        <item name="layout_heightPercent">@fraction/heightPercent</item>
-    </style>
-
-    <style name="ColorControl" >
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="layout_aspectRatio">100%</item>
-        <item name="layout_widthPercent">65%</item>
-        <item name="android:selectable">true</item>
-    </style>
-
 </resources>

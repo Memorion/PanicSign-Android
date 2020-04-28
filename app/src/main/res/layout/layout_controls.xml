@@ -1,157 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.percentlayout.widget.PercentRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/red_wrap"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        style="@style/ColorWrapper" >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/red"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/red"
+        android:tag="@string/key_red"
+        app:layout_constraintBottom_toTopOf="@+id/teal"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/orange"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/red"
-            android:src="@drawable/red"
-            android:tag="@string/key_red"
-            style="@style/ColorControl" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/orange"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/orange"
+        android:tag="@string/key_orange"
+        app:layout_constraintBottom_toTopOf="@+id/light_blue"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/yellow"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/red"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.percentlayout.widget.PercentFrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/yellow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/yellow"
+        android:tag="@string/key_yellow"
+        app:layout_constraintBottom_toTopOf="@+id/blue"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/green"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/orange"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/orange_wrap"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/red_wrap"
-        android:layout_toEndOf="@id/red_wrap"
-        style="@style/ColorWrapper" >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/green"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/green"
+        android:tag="@string/key_green"
+        app:layout_constraintBottom_toTopOf="@+id/purple"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/green2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/yellow"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/orange"
-            android:src="@drawable/orange"
-            android:tag="@string/key_orange"
-            style="@style/ColorControl" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/green2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/green2"
+        android:tag="@string/key_green2"
+        app:layout_constraintBottom_toTopOf="@+id/pink"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/green"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.percentlayout.widget.PercentFrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/teal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/teal"
+        android:tag="@string/key_teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toStartOf="@+id/light_blue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/red" />
 
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/yellow_wrap"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/orange_wrap"
-        android:layout_toEndOf="@id/orange_wrap"
-        style="@style/ColorWrapper" >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/light_blue"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/light_blue"
+        android:tag="@string/key_light_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/blue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/teal"
+        app:layout_constraintTop_toBottomOf="@+id/orange" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/yellow"
-            android:src="@drawable/yellow"
-            android:tag="@string/key_yellow"
-            style="@style/ColorControl" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/blue"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/blue"
+        android:tag="@string/key_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/purple"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/light_blue"
+        app:layout_constraintTop_toBottomOf="@+id/yellow" />
 
-    </androidx.percentlayout.widget.PercentFrameLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/purple"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/purple"
+        android:tag="@string/key_purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pink"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/blue"
+        app:layout_constraintTop_toBottomOf="@+id/green" />
 
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/green_wrap"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/yellow_wrap"
-        android:layout_toEndOf="@id/yellow_wrap"
-        style="@style/ColorWrapper" >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/pink"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
+        android:src="@drawable/pink"
+        android:tag="@string/key_pink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/purple"
+        app:layout_constraintTop_toBottomOf="@+id/green2" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/green"
-            android:src="@drawable/green"
-            android:tag="@string/key_green"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/green2_wrap"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/green_wrap"
-        android:layout_toEndOf="@id/green_wrap"
-        style="@style/ColorWrapper" >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/green2"
-            android:src="@drawable/green2"
-            android:tag="@string/key_green2"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/teal_wrap"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        style="@style/ColorWrapper" >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/teal"
-            android:src="@drawable/teal"
-            android:tag="@string/key_teal"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/light_blue_wrap"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/teal_wrap"
-        android:layout_toEndOf="@id/teal_wrap"
-        style="@style/ColorWrapper" >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/light_blue"
-            android:src="@drawable/light_blue"
-            android:tag="@string/key_light_blue"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/blue_wrap"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/light_blue_wrap"
-        android:layout_toEndOf="@id/light_blue_wrap"
-        style="@style/ColorWrapper" >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/blue"
-            android:src="@drawable/blue"
-            android:tag="@string/key_blue"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/purple_wrap"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/blue_wrap"
-        android:layout_toEndOf="@id/blue_wrap"
-        style="@style/ColorWrapper" >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/purple"
-            android:src="@drawable/purple"
-            android:tag="@string/key_purple"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-    <androidx.percentlayout.widget.PercentFrameLayout
-        android:id="@+id/pink_wrap"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/purple_wrap"
-        android:layout_toEndOf="@id/purple_wrap"
-        style="@style/ColorWrapper">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/pink"
-            android:src="@drawable/pink"
-            android:tag="@string/key_pink"
-            style="@style/ColorControl" />
-
-    </androidx.percentlayout.widget.PercentFrameLayout>
-
-</androidx.percentlayout.widget.PercentRelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
