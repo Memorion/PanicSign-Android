@@ -3,7 +3,7 @@
     android:width="223dp"
     android:height="230dp"
     android:viewportWidth="223"
-    android:viewportHeight="230" >
+    android:viewportHeight="230">
 
     <path
         android:name="top"

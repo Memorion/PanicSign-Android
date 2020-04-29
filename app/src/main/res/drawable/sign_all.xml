@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/sign_bottom" android:drawable="@drawable/sign_bottom" />
-    <item android:id="@+id/sign_top" android:drawable="@drawable/sign_top" />
-    <item android:id="@+id/sign_letter" android:drawable="@drawable/sign_middle" />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sign_bottom"
+        android:drawable="@drawable/sign_bottom" />
+    <item
+        android:id="@+id/sign_top"
+        android:drawable="@drawable/sign_top" />
+    <item
+        android:id="@+id/sign_letter"
+        android:drawable="@drawable/sign_middle" />
 </layer-list>

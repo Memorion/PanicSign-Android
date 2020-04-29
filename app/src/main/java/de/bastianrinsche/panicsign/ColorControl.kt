@@ -30,7 +30,7 @@ internal class ColorControl(
     init {
         selected = initSelection // L16 doesn't seem to use the setter logic otherwise
         for (v in colors) {
-            v.setOnClickListener{ view: View ->
+            v.setOnClickListener { view: View ->
                 selected = view.tag as String
             }
         }

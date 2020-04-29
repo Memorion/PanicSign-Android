@@ -7,119 +7,106 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="?colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="?colorPrimary"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp">
 
         <ImageButton
             android:id="@+id/dismiss"
-            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/action_dismiss"
-            app:srcCompat="@drawable/close"/>
+            app:srcCompat="@drawable/close" />
 
         <TextView
-            android:text="@string/settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/settings_margin_title"
             android:gravity="start|center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:layout_marginLeft="@dimen/settings_margin_title"
-            android:layout_marginStart="@dimen/settings_margin_title"/>
+            android:text="@string/settings"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/toolbar">
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/settings_features"
-                android:text="@string/settings_features"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="@dimen/settings_horizontal_margin"
                 android:layout_marginStart="@dimen/settings_horizontal_margin"
-                android:layout_marginRight="@dimen/settings_horizontal_margin"
+                android:layout_marginLeft="@dimen/settings_horizontal_margin"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="@dimen/settings_horizontal_margin"
+                android:layout_marginRight="@dimen/settings_horizontal_margin"
+                android:text="@string/settings_features"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@color/accent_material_dark" />
 
             <TextView
                 android:id="@+id/pref_voice_title"
-                android:text="@string/settings_send_after_voice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:layout_below="@id/settings_features"
-                android:layout_alignLeft="@id/settings_features"
-                android:layout_alignStart="@id/settings_features"/>
+                android:layout_alignStart="@id/settings_features"
+                android:text="@string/settings_send_after_voice"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
                 android:id="@+id/pref_voice_sum"
-                android:text="@string/settings_sum_send_after_voice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pref_voice_title"
-                android:layout_alignLeft="@id/settings_features"
                 android:layout_alignStart="@id/settings_features"
-                android:layout_toLeftOf="@+id/pref_voice_switch"
                 android:layout_toStartOf="@+id/pref_voice_switch"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+                android:text="@string/settings_sum_send_after_voice"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/pref_voice_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/pref_voice_title"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginRight="@dimen/settings_horizontal_margin"
                 android:layout_marginEnd="@dimen/settings_horizontal_margin" />
 
             <TextView
-                android:text="@string/about_title"
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/pref_voice_sum"
-                android:layout_marginTop="16dp"
-                android:id="@+id/textView4"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                android:layout_alignLeft="@id/settings_features"
                 android:layout_alignStart="@id/settings_features"
-                android:layout_alignRight="@id/pref_voice_switch"
                 android:layout_alignEnd="@id/pref_voice_switch"
+                android:layout_marginTop="16dp"
+                android:text="@string/about_title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@color/accent_material_dark" />
 
             <TextView
                 android:id="@+id/about_text"
-                android:text="@string/about_disclaimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView4"
-                android:layout_alignLeft="@id/settings_features"
                 android:layout_alignStart="@id/settings_features"
-                android:layout_alignRight="@id/pref_voice_switch"
                 android:layout_alignEnd="@id/pref_voice_switch"
+                android:text="@string/about_disclaimer"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </RelativeLayout>
     </ScrollView>
-
 </RelativeLayout>

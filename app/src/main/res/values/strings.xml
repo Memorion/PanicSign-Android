@@ -96,5 +96,5 @@
         <item name="key_purple_rgb">@string/key_purple_rgb</item>
         <item name="key_pink_rgb">@string/key_pink_rgb</item>
     </string-array>
-    
+
 </resources>

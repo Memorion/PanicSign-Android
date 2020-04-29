@@ -53,11 +53,11 @@ class SignActivity : AppCompatActivity() {
         topSign = sign.findDrawableByLayerId(R.id.sign_top)
         bottomSign = sign.findDrawableByLayerId(R.id.sign_bottom)
         binding.viewSign.setImageDrawable(sign)
-        topControl = ColorControl(binding.controlTop, getString(R.string.key_light_blue)) {
-            colorString -> changeSignColor(Sign.TOP, colorString)
+        topControl = ColorControl(binding.controlTop, getString(R.string.key_light_blue)) { newColor ->
+            changeSignColor(Sign.TOP, newColor)
         }
-        bottomControl = ColorControl(binding.controlBottom, getString(R.string.key_blue)) {
-            colorString -> changeSignColor(Sign.BOTTOM, colorString)
+        bottomControl = ColorControl(binding.controlBottom, getString(R.string.key_blue)) { newColor ->
+            changeSignColor(Sign.BOTTOM, newColor)
         }
         binding.buttonOverflow.setOnClickListener { openAbout() }
         binding.buttonChange.setOnClickListener { sendChangeRequest() }

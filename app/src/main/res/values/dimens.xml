@@ -4,7 +4,4 @@
 
     <dimen name="settings_margin_title">32dp</dimen>
     <dimen name="settings_horizontal_margin">16dp</dimen>
-
-    <fraction name="widthPercent">20%</fraction>
-    <fraction name="heightPercent">50%</fraction>
 </resources>
