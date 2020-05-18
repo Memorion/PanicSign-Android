@@ -1,12 +1,13 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">#344955</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">#232F34</item>
     </style>
 
-    <style name="AppTheme.Transparent" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+    <style name="AppTheme.TransparentStatusbar" parent="AppTheme">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
